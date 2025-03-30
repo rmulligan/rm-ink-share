@@ -1,0 +1,10 @@
+# Test HCL file for Remarkable
+puts "size [expr 1404] [expr 1872]"
+puts "# Title"
+puts "set_font Sans 24"
+puts "text 100 100 \"Test Heading\""
+puts "# URL"
+puts "set_font Sans 12"
+puts "text 100 150 \"Source: https://example.com\""
+puts "# Content"
+puts "text 100 200 \"This is a test paragraph to see how the content is rendered on the Remarkable device. The goal is to create editable text content that works well with the Remarkable's interface.\""

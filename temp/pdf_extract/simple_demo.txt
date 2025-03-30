@@ -1,0 +1,12 @@
+Test Document for Remarkable
+
+This text document will be converted to Remarkable format using the exact approach from the drawj2d wiki.
+
+Key points:
+- Using write.hcl script as described in the wiki
+- Using the Lines font which supports editing
+- Using the proper -Trmdoc conversion format
+
+When this is displayed on the Remarkable tablet, it should show editable text that can be modified directly on the device.
+
+Testing one, two, three...

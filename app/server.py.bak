@@ -1,0 +1,670 @@
+from http.server import BaseHTTPRequestHandler, HTTPServer
+import json
+import qrcode  # type: ignore
+import os
+import subprocess
+import requests
+import tempfile
+import io
+import time
+import textwrap
+import re
+import base64
+import uuid
+from PIL import Image  # type: ignore # Requires pillow, installed via "qrcode[pil]"
+from bs4 import BeautifulSoup  # type: ignore
+
+# --- Configuration ---
+LISTEN_HOST = '0.0.0.0'  # Listen on all available interfaces, including Tailscale
+LISTEN_PORT = 9999       # Using a different port since others are already in use
+QR_OUTPUT_PATH = "/home/ryan/pi_share_receiver/output/"  # Using absolute path for reliability
+TEMP_DIR = "/home/ryan/pi_share_receiver/temp/"  # Temporary directory for processing
+RMAPI_PATH = "/usr/local/bin/rmapi"  # Path to rmapi executable
+DRAWJ2D_PATH = "/usr/local/bin/drawj2d"  # Path to drawj2d executable
+RM_FOLDER = "/"  # Remarkable cloud folder to upload to (root by default)
+
+# Remarkable Pro tablet dimensions
+RM_WIDTH = 1872  # Width in pixels for Remarkable Pro (increased from standard)
+RM_HEIGHT = 2404  # Height in pixels for Remarkable Pro (increased from standard)
+RM_MARGIN = 120  # Margin from edges
+RM_LINE_HEIGHT = 35  # Space between lines of normal text
+RM_HEADER_LINE_HEIGHT = 55  # Space for header lines
+RM_MAX_TEXT_WIDTH = RM_WIDTH - (2 * RM_MARGIN)  # Maximum text width
+
+# Font settings - Using Lines fonts for Remarkable
+RM_TITLE_FONT = "Lines-Bold"  # Font for titles
+RM_HEADING_FONT = "Lines-Bold"  # Font for headings
+RM_BODY_FONT = "Lines"  # Font for body text
+RM_BODY_FONT_ITALIC = "Lines-Italic"  # Font for emphasizing text
+RM_CODE_FONT = "Lines"  # Using regular Lines font for code blocks - non-Lines fonts are only outlines
+
+# Font sizes
+RM_TITLE_SIZE = 36
+RM_H1_SIZE = 32
+RM_H2_SIZE = 28
+RM_H3_SIZE = 24
+RM_BODY_SIZE = 18
+RM_CODE_SIZE = 16
+
+# Colors (for Remarkable Pro)
+RM_TEXT_COLOR = "#000000"  # Black for regular text
+RM_ACCENT_COLOR = "#1C9BF0"  # Blue for headings and accents
+RM_CODE_BG_COLOR = "#F2F2F2"  # Light gray for code backgrounds
+RM_QUOTE_COLOR = "#6C757D"  # Gray for blockquotes
+RM_LINK_COLOR = "#1C9BF0"  # Blue for links
+# --- End Configuration ---
+
+# Ensure directories exist
+os.makedirs(QR_OUTPUT_PATH, exist_ok=True)
+os.makedirs(TEMP_DIR, exist_ok=True)
+
+def scrape_webpage(url):
+    """Scrape content from a URL and return the title, structured content, and images."""
+    try:
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+        }
+        response = requests.get(url, headers=headers, timeout=30)
+        response.raise_for_status()
+        
+        soup = BeautifulSoup(response.text, 'html.parser')
+        
+        # Get the page title
+        title = soup.title.string if soup.title else "Untitled"
+        
+        # Extract main content (focusing on article or main content)
+        # Look for common article containers
+        main_content = soup.find('article') or soup.find('main') or soup.find('div', class_='content') or soup.body
+        
+        # Initialize content structure
+        structured_content = []
+        images = []
+        
+        if main_content:
+            # Remove script, style, and navigational elements
+            for script in main_content(["script", "style", "nav", "footer", "header", "aside"]):
+                script.extract()
+            
+            # Process content structure
+            process_content_elements(main_content, structured_content, images, url)
+        
+        if not structured_content:
+            structured_content.append({
+                "type": "paragraph",
+                "content": f"No content could be extracted from {url}"
+            })
+        
+        return {
+            "title": title, 
+            "structured_content": structured_content, 
+            "images": images
+        }
+    except Exception as e:
+        print(f"Error scraping webpage: {e}")
+        return {
+            "title": f"Error: Could not scrape {url}", 
+            "structured_content": [{
+                "type": "paragraph", 
+                "content": f"Failed to scrape content: {str(e)}"
+            }],
+            "images": []
+        }
+
+def process_content_elements(element, content_list, image_list, base_url):
+    """Process HTML elements and extract structured content."""
+    # Process headings
+    for i in range(1, 7):
+        for heading in element.find_all(f'h{i}', recursive=False):
+            content_list.append({
+                "type": f"h{i}",
+                "content": heading.get_text(strip=True)
+            })
+            heading.extract()
+    
+    # Process images
+    for img in element.find_all('img', recursive=False):
+        src = img.get('src', '')
+        alt = img.get('alt', 'Image')
+        
+        # Handle relative URLs
+        if src and not src.startswith(('http://', 'https://')):
+            src = requests.compat.urljoin(base_url, src)
+        
+        if src:
+            img_id = str(uuid.uuid4())
+            image_list.append({
+                "id": img_id,
+                "src": src,
+                "alt": alt
+            })
+            content_list.append({
+                "type": "image",
+                "image_id": img_id,
+                "alt": alt
+            })
+        img.extract()
+    
+    # Process pre/code blocks
+    for pre in element.find_all(['pre', 'code'], recursive=False):
+        content_list.append({
+            "type": "code",
+            "content": pre.get_text(strip=True)
+        })
+        pre.extract()
+    
+    # Process paragraphs
+    for p in element.find_all('p', recursive=False):
+        # Check if paragraph has images
+        has_processed_content = False
+        
+        # Process nested images
+        for img in p.find_all('img'):
+            src = img.get('src', '')
+            alt = img.get('alt', 'Image')
+            
+            # Handle relative URLs
+            if src and not src.startswith(('http://', 'https://')):
+                src = requests.compat.urljoin(base_url, src)
+            
+            if src:
+                img_id = str(uuid.uuid4())
+                image_list.append({
+                    "id": img_id,
+                    "src": src,
+                    "alt": alt
+                })
+                content_list.append({
+                    "type": "image",
+                    "image_id": img_id,
+                    "alt": alt
+                })
+                has_processed_content = True
+        
+        # Add the text content if not empty
+        text = p.get_text(strip=True)
+        if text:
+            content_list.append({
+                "type": "paragraph",
+                "content": text
+            })
+            has_processed_content = True
+        
+        p.extract()
+    
+    # Process lists
+    for list_el in element.find_all(['ul', 'ol'], recursive=False):
+        list_items = []
+        for li in list_el.find_all('li'):
+            list_items.append(li.get_text(strip=True))
+        
+        content_list.append({
+            "type": "list",
+            "list_type": list_el.name,  # 'ul' or 'ol'
+            "items": list_items
+        })
+        list_el.extract()
+    
+    # Process blockquotes
+    for blockquote in element.find_all('blockquote', recursive=False):
+        content_list.append({
+            "type": "blockquote",
+            "content": blockquote.get_text(strip=True)
+        })
+        blockquote.extract()
+    
+    # Process remaining text
+    text = element.get_text(strip=True)
+    if text:
+        paragraphs = text.split('\n\n')
+        for paragraph in paragraphs:
+            if paragraph.strip():
+                content_list.append({
+                    "type": "paragraph",
+                    "content": paragraph.strip()
+                })
+    
+    # Process children recursively
+    for child in element.children:
+        if hasattr(child, 'name') and child.name:
+            process_content_elements(child, content_list, image_list, base_url)
+
+def sanitize_text(text):
+    """Sanitize text for use in HCL script."""
+    if not text:
+        return ""
+    # Replace double quotes with escaped double quotes
+    text = text.replace('"', '\\"')
+    # Replace backslashes with double backslashes
+    text = text.replace('\\', '\\\\')
+    # Remove any non-printable characters
+    text = re.sub(r'[^\x20-\x7E\n]', '', text)
+    return text
+
+def download_image(image_url, image_id):
+    """Download an image and save it to the temp directory."""
+    try:
+        response = requests.get(image_url, timeout=30)
+        response.raise_for_status()
+        
+        # Determine file extension based on content type
+        content_type = response.headers.get('content-type', '')
+        if 'jpeg' in content_type or 'jpg' in content_type:
+            ext = 'jpg'
+        elif 'png' in content_type:
+            ext = 'png'
+        elif 'gif' in content_type:
+            ext = 'gif'
+        elif 'svg' in content_type:
+            ext = 'svg'
+        else:
+            ext = 'jpg'  # Default to jpg
+        
+        image_path = os.path.join(TEMP_DIR, f"{image_id}.{ext}")
+        
+        with open(image_path, 'wb') as f:
+            f.write(response.content)
+        
+        return image_path, ext
+    except Exception as e:
+        print(f"Error downloading image {image_url}: {e}")
+        return None, None
+
+def create_hcl_script(url, qr_image_path, content):
+    """Create an HCL script for drawj2d to generate a Remarkable document."""
+    try:
+        title = sanitize_text(content["title"])
+        structured_content = content["structured_content"]
+        images = content["images"]
+        
+        # Download images
+        image_paths = {}
+        for img in images:
+            img_path, img_ext = download_image(img["src"], img["id"])
+            if img_path:
+                image_paths[img["id"]] = img_path
+        
+        # Calculate positions
+        title_y = RM_MARGIN
+        url_y = title_y + RM_HEADER_LINE_HEIGHT
+        qr_code_x = RM_WIDTH - RM_MARGIN - 350  # QR code placed top right
+        qr_code_y = RM_MARGIN
+        content_y = url_y + RM_LINE_HEIGHT * 3  # Extra space after URL
+        
+        # HCL script template - Using puts commands that work with drawj2d
+        hcl_script = f"""# Remarkable document for URL: {url}
+# Generated at {time.strftime("%Y-%m-%d %H:%M:%S")}
+
+puts "size {RM_WIDTH} {RM_HEIGHT}"
+
+# Title with Lines-Bold font
+puts "set_font {RM_TITLE_FONT} {RM_TITLE_SIZE}"
+puts "text {RM_MARGIN} {title_y} \\"{title[:80]}\\""
+
+# URL with Lines font
+puts "set_font {RM_BODY_FONT} {RM_BODY_SIZE}"
+puts "text {RM_MARGIN} {url_y} \\"Source: {url}\\""
+
+# QR Code (placed top right)
+"""
+        
+        # Add QR code image
+        if os.path.exists(qr_image_path):
+            qr_size = 350
+            # Simple border and image
+            hcl_script += f'puts "rectangle {qr_code_x-5} {qr_code_y-5} {qr_size+10} {qr_size+10} width=1.5"\n'
+            hcl_script += f'puts "image {qr_code_x} {qr_code_y} {qr_size} {qr_size} \\"{qr_image_path}\\""\n\n'
+        
+        # Add separator between header and content
+        hcl_script += f'puts "line {RM_MARGIN} {content_y - RM_LINE_HEIGHT} {RM_WIDTH - RM_MARGIN} {content_y - RM_LINE_HEIGHT} width=1"\n\n'
+        
+        # Process structured content
+        y_pos = content_y
+        current_indent = 0
+        section_count = 0  # To track sections for visual separation
+        
+        for item in structured_content:
+            item_type = item.get("type", "paragraph")
+            item_content = sanitize_text(item.get("content", ""))
+            
+            # Skip empty content
+            if not item_content and item_type != "image":
+                continue
+            
+            # Heading 1 - Major section heading
+            if item_type == "h1":
+                # Add visual separator between sections
+                if section_count > 0:
+                    y_pos += RM_LINE_HEIGHT * 1.5
+                
+                y_pos += RM_LINE_HEIGHT  # Extra space before heading
+                hcl_script += f'puts "set_font {RM_HEADING_FONT} {RM_H1_SIZE}"\n'
+                hcl_script += f'puts "text {RM_MARGIN} {y_pos} \\"{item_content}\\""\n'
+                
+                # Draw underline for H1 headings
+                y_pos += 10
+                hcl_script += f'puts "line {RM_MARGIN} {y_pos} {RM_MARGIN + len(item_content) * (RM_H1_SIZE/2)} {y_pos} width=2"\n'
+                
+                y_pos += RM_HEADER_LINE_HEIGHT
+                hcl_script += f'puts "set_font {RM_BODY_FONT} {RM_BODY_SIZE}"\n'
+                section_count += 1
+            
+            # Heading 2 - Subsection heading
+            elif item_type == "h2":
+                y_pos += RM_LINE_HEIGHT  # Extra space before heading
+                hcl_script += f'puts "set_font {RM_HEADING_FONT} {RM_H2_SIZE}"'"
+                hcl_script += f'puts "text {RM_MARGIN} {y_pos} \\"{item_content}\\""
+'
+                y_pos += RM_HEADER_LINE_HEIGHT
+                hcl_script += f'puts "set_font {RM_BODY_FONT} {RM_BODY_SIZE}\n'"
+            
+            # Heading 3-6 - Lower level headings
+            elif item_type in ["h3", "h4", "h5", "h6"]:
+                y_pos += RM_LINE_HEIGHT  # Extra space before heading
+                hcl_script += f'puts "set_font {RM_HEADING_FONT} {RM_H3_SIZE}\n'"
+                hcl_script += f'puts "text {RM_MARGIN} {y_pos} \\"{item_content}\\""
+'
+                y_pos += RM_HEADER_LINE_HEIGHT
+                hcl_script += f'puts "set_font {RM_BODY_FONT} {RM_BODY_SIZE}\n'"
+            
+            # Image
+            elif item_type == "image":
+                image_id = item.get("image_id")
+                if image_id in image_paths:
+                    y_pos += RM_LINE_HEIGHT * 1.5  # Extra space before image
+                    image_path = image_paths[image_id]
+                    
+                    # Add image with scaled width (max 80% of page width)
+                    img_width = int(RM_MAX_TEXT_WIDTH * 0.8)
+                    img_height = 500  # Default height, will be proportional
+                    
+                    # Simple border and image
+                    hcl_script += f'puts "rectangle {RM_MARGIN-10} {y_pos-10} {img_width+20} {img_height+20} width=1.5\n'"
+                    hcl_script += f'image {RM_MARGIN} {y_pos} {img_width} {img_height} \\"{image_path}\\""
+'
+                    
+                    # Add caption if alt text is provided
+                    alt_text = sanitize_text(item.get("alt", ""))
+                    if alt_text and alt_text != "Image":
+                        y_pos += img_height + RM_LINE_HEIGHT
+                        hcl_script += f'puts "set_font {RM_BODY_FONT_ITALIC} {RM_BODY_SIZE-2}\n'"
+                        hcl_script += f'puts "text {RM_MARGIN + 20} {y_pos} \\"[Image: {alt_text}]\\""
+'
+                        hcl_script += f'puts "set_font {RM_BODY_FONT} {RM_BODY_SIZE}\n'"
+                    else:
+                        y_pos += img_height
+                    
+                    y_pos += RM_LINE_HEIGHT * 1.5  # Extra space after image
+            
+            # Code block
+            elif item_type == "code":
+                y_pos += RM_LINE_HEIGHT * 1.5  # Extra space before code block
+                
+                # Switch to code font
+                hcl_script += f'puts "set_font {RM_CODE_FONT} {RM_CODE_SIZE}\n'"
+                
+                # Process code lines
+                code_lines = item_content.split('\n')
+                code_height = len(code_lines) * RM_LINE_HEIGHT + RM_LINE_HEIGHT * 2
+                code_width = RM_MAX_TEXT_WIDTH
+                
+                # Draw code block background with simple border
+                hcl_script += f'puts "rectangle {RM_MARGIN-15} {y_pos-15} {code_width+30} {code_height+30} width=1.5\n'"
+                
+                # Add code lines with proper indentation preserved
+                y_pos += RM_LINE_HEIGHT
+                for line in code_lines:
+                    y_pos += RM_LINE_HEIGHT
+                    # Calculate indentation (number of leading spaces)
+                    indent = len(line) - len(line.lstrip())
+                    indent_space = indent * 8  # Convert to pixels
+                    hcl_script += f'puts "text {RM_MARGIN + indent_space} {y_pos} \\"{sanitize_text(line.lstrip())}\\""
+'
+                
+                y_pos += RM_LINE_HEIGHT * 1.5  # Extra space after code block
+                hcl_script += f'puts "set_font {RM_BODY_FONT} {RM_BODY_SIZE}\n'"
+            
+            # Lists with bullets or numbers
+            elif item_type == "list":
+                y_pos += RM_LINE_HEIGHT  # Space before list
+                list_type = item.get("list_type", "ul")
+                list_items = item.get("items", [])
+                
+                # Simple vertical line next to list
+                list_height = len(list_items) * RM_LINE_HEIGHT + RM_LINE_HEIGHT
+                list_indent = 30  # Indentation for list items
+                
+                hcl_script += f'puts "line {RM_MARGIN} {y_pos-10} {RM_MARGIN} {y_pos+list_height+10} width=1.5\n'"
+                
+                for i, list_item in enumerate(list_items):
+                    # Use different bullet styles based on list type
+                    if list_type == "ul":
+                        bullet = "•"
+                    else:  # ordered list
+                        bullet = f"{i+1}."
+                    
+                    hcl_script += f'puts "text {RM_MARGIN + 5} {y_pos} \\"{bullet}\\""
+'
+                    
+                    # Wrap list item text with proper indentation
+                    wrapped_item = textwrap.wrap(list_item, width=75)
+                    for j, line in enumerate(wrapped_item):
+                        if j == 0:  # First line has bullet
+                            hcl_script += f'puts "text {RM_MARGIN + list_indent} {y_pos} \\"{sanitize_text(line)}\\""
+'
+                        else:  # Continuation lines are indented more
+                            y_pos += RM_LINE_HEIGHT
+                            hcl_script += f'puts "text {RM_MARGIN + list_indent + 20} {y_pos} \\"{sanitize_text(line)}\\""
+'
+                        
+                    y_pos += RM_LINE_HEIGHT
+                
+                y_pos += RM_LINE_HEIGHT  # Extra space after list
+            
+            # Blockquote
+            elif item_type == "blockquote":
+                y_pos += RM_LINE_HEIGHT * 1.5  # Extra space before blockquote
+                
+                # Process quote text
+                quote_lines = textwrap.wrap(item_content, width=75)
+                quote_height = len(quote_lines) * RM_LINE_HEIGHT + RM_LINE_HEIGHT
+                
+                # Draw simple left border for blockquote
+                hcl_script += f'puts "rectangle {RM_MARGIN-5} {y_pos-10} 5 {quote_height+20} width=1\n'"
+                
+                # Add quote content in italic
+                hcl_script += f'puts "set_font {RM_BODY_FONT_ITALIC} {RM_BODY_SIZE}\n'"
+                for line in quote_lines:
+                    y_pos += RM_LINE_HEIGHT
+                    hcl_script += f'puts "text {RM_MARGIN + 20} {y_pos} \\"{sanitize_text(line)}\\""
+'
+                
+                y_pos += RM_LINE_HEIGHT * 1.5  # Extra space after blockquote
+                hcl_script += f'puts "set_font {RM_BODY_FONT} {RM_BODY_SIZE}\n'"
+            
+            # Regular paragraph
+            else:
+                # Add wrapped paragraph text with proper spacing
+                wrapped_lines = textwrap.wrap(item_content, width=85)  # Wider for Remarkable Pro
+                if wrapped_lines:
+                    y_pos += RM_LINE_HEIGHT  # Space before paragraph
+                    
+                    for i, line in enumerate(wrapped_lines):
+                        # First line has no indent, subsequent lines are indented
+                        indent = 0 if i == 0 else 20
+                        y_pos += RM_LINE_HEIGHT
+                        hcl_script += f'puts "text {RM_MARGIN + current_indent + indent} {y_pos} \\"{sanitize_text(line)}\\""
+'
+                    
+                    y_pos += RM_LINE_HEIGHT * 0.8  # Space after paragraph
+            
+            # Check if we need to start a new page
+            if y_pos > RM_HEIGHT - RM_MARGIN:
+                y_pos = RM_MARGIN
+                hcl_script += 'puts "newpage"\n'
+                hcl_script += f'puts "set_font {RM_BODY_FONT} {RM_BODY_SIZE}"\n'
+        
+        # Create a unique filename
+        hcl_filename = f"rm_{hash(url)}_{int(time.time())}.hcl"
+        hcl_path = os.path.join(TEMP_DIR, hcl_filename)
+        
+        # Write the HCL script to file
+        with open(hcl_path, 'w') as f:
+            f.write(hcl_script)
+            
+        return hcl_path
+    except Exception as e:
+        print(f"Error creating HCL script: {e}")
+        return None
+
+def create_rmdoc_with_hcl(hcl_path, url):
+    """Convert HCL to Remarkable document format using drawj2d."""
+    try:
+        # Create a unique filename
+        rmdoc_filename = f"rm_{hash(url)}_{int(time.time())}.rmdoc"
+        rmdoc_path = os.path.join(TEMP_DIR, rmdoc_filename)
+        
+        # Convert HCL to Remarkable document
+        cmd = [DRAWJ2D_PATH, "-T", "rmdoc", "-o", rmdoc_path, hcl_path]
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        
+        if result.returncode != 0:
+            print(f"Error converting to Remarkable format: {result.stderr}")
+            return None
+        
+        print(f"Successfully converted to Remarkable format: {rmdoc_path}")
+        return rmdoc_path
+    except Exception as e:
+        print(f"Exception converting to Remarkable format: {e}")
+        return None
+
+def upload_to_remarkable(rmdoc_path, title):
+    """Upload the Remarkable document to Remarkable Cloud using rmapi."""
+    try:
+        # Create a safe filename
+        safe_title = "".join([c if c.isalnum() or c in " .-_" else "_" for c in title])
+        safe_title = safe_title[:50]  # Limit length
+        
+        # Upload using rmapi
+        cmd = [RMAPI_PATH, "put", rmdoc_path, RM_FOLDER]
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        
+        if result.returncode != 0:
+            print(f"Error uploading to Remarkable: {result.stderr}")
+            return False, result.stderr
+        
+        print(f"Successfully uploaded to Remarkable Cloud: {result.stdout}")
+        return True, result.stdout
+    except Exception as e:
+        print(f"Exception uploading to Remarkable: {e}")
+        return False, str(e)
+
+class RequestHandler(BaseHTTPRequestHandler):
+    def do_POST(self):
+        if self.path == '/share':
+            try:
+                content_length = int(self.headers['Content-Length'])
+                post_data = self.rfile.read(content_length)
+
+                # Try decoding as JSON first
+                try:
+                    data = json.loads(post_data.decode('utf-8'))
+                    url_to_share = data.get('url')
+                except json.JSONDecodeError:
+                    # Fallback: assume plain text URL if JSON fails
+                    url_to_share = post_data.decode('utf-8').strip()
+
+                if not url_to_share or not url_to_share.startswith(('http://', 'https://')):
+                    raise ValueError("Invalid or missing URL")
+
+                print(f"Received URL: {url_to_share}")
+
+                # Generate QR Code
+                qr = qrcode.QRCode(
+                    version=1,
+                    error_correction=qrcode.constants.ERROR_CORRECT_L,
+                    box_size=10,
+                    border=4,
+                )
+                qr.add_data(url_to_share)
+                qr.make(fit=True)
+
+                img = qr.make_image(fill_color="black", back_color="white")
+
+                # Save QR Code image
+                filename = f"qr_{hash(url_to_share)}.png"
+                filepath = os.path.join(QR_OUTPUT_PATH, filename)
+                img.save(filepath)
+                print(f"QR Code saved to: {filepath}")
+                
+                # Scrape the webpage content
+                print(f"Scraping content from: {url_to_share}")
+                webpage_content = scrape_webpage(url_to_share)
+                
+                # Create HCL script for Remarkable document
+                print(f"Creating HCL script for content and QR code")
+                hcl_path = create_hcl_script(url_to_share, filepath, webpage_content)
+                
+                # Convert HCL to Remarkable document format
+                rmdoc_path = None
+                if hcl_path:
+                    print(f"Converting HCL to Remarkable document format")
+                    rmdoc_path = create_rmdoc_with_hcl(hcl_path, url_to_share)
+                else:
+                    print("Failed to create HCL script, skipping conversion")
+                
+                # Upload to Remarkable Cloud
+                remarkable_status = {"uploaded": False, "message": "Skipped Remarkable upload"}
+                
+                if rmdoc_path:
+                    print(f"Uploading Remarkable document to Remarkable Cloud")
+                    success, message = upload_to_remarkable(rmdoc_path, webpage_content["title"])
+                    remarkable_status = {
+                        "uploaded": success,
+                        "message": message
+                    }
+                else:
+                    print("Failed to create Remarkable document, skipping upload")
+
+                self.send_response(200)
+                self.send_header('Content-type', 'application/json')
+                self.end_headers()
+                response = {
+                    'status': 'success',
+                    'url_received': url_to_share,
+                    'qr_path': filepath,
+                    'hcl_path': hcl_path if hcl_path else "Failed to create HCL script",
+                    'rmdoc_path': rmdoc_path if rmdoc_path else "Failed to create Remarkable document",
+                    'title': webpage_content["title"],
+                    'remarkable': remarkable_status
+                }
+                self.wfile.write(json.dumps(response).encode('utf-8'))
+
+            except Exception as e:
+                print(f"Error processing request: {e}")
+                self.send_response(400)
+                self.send_header('Content-type', 'application/json')
+                self.end_headers()
+                self.wfile.write(
+                    json.dumps({
+                        'status': 'error',
+                        'message': str(e)
+                    }).encode('utf-8')
+                )
+        else:
+            self.send_response(404)
+            self.end_headers()
+            self.wfile.write(b'Not Found')
+
+def run(server_class=HTTPServer, handler_class=RequestHandler, port=LISTEN_PORT):
+    server_address = (LISTEN_HOST, port)
+    httpd = server_class(server_address, handler_class)
+    print(f"Starting httpd server on {LISTEN_HOST}:{port}...")
+    try:
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        pass
+    httpd.server_close()
+    print("Stopping httpd server...")
+
+if __name__ == '__main__':
+    run()

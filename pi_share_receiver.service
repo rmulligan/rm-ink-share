@@ -1,0 +1,16 @@
+[Unit]
+Description=Pi Share Receiver Service
+After=network.target
+
+[Service]
+Type=simple
+User=ryan
+WorkingDirectory=/home/ryan/pi_share_receiver
+ExecStart=/home/ryan/pi_share_receiver/venv/bin/python /home/ryan/pi_share_receiver/app/server.py
+Restart=on-failure
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
