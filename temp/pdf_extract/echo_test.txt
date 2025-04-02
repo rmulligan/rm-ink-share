@@ -1,7 +1,0 @@
-Echo Test Document
-
-This is a simple test document that will be passed via echo to drawj2d for conversion.
-
-According to the wiki examples, this approach should create an editable document on the Remarkable tablet.
-
-Testing one, two, three.

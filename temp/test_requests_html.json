@@ -1,9 +1,0 @@
-{
-  "title": "Error: Could not scrape https://docs.mulligan.dev/vGvJdpKgV7NFjB",
-  "structured_content": [
-    {
-      "type": "paragraph",
-      "content": "Failed to scrape content with requests-html: Browser closed unexpectedly:\n"
-    }
-  ]
-}
