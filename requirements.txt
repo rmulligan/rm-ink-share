@@ -1,6 +1,5 @@
-qrcode[pil]
-flask
+qrcode
+pillow
 requests
 beautifulsoup4
-playwright
-pypdf2
+PyPDF2
