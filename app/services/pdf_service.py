@@ -1,40 +1,74 @@
+"""PDF processing service for Pi Share Receiver."""
+
 import os
-import time
-from urllib.parse import urlparse
 import requests
 import PyPDF2
-from typing import Dict, Optional
-from .interfaces import IPDFService
+from urllib.parse import urlparse
+from typing import Dict, Optional, Any
+import logging
 
-class PDFService(IPDFService):
+# Configure logging
+logger = logging.getLogger(__name__)
+
+class PDFService:
+    """Handles PDF processing operations."""
+    
     def __init__(self, temp_dir: str, extract_dir: str):
+        """Initialize with directories for temporary and extracted files.
+        
+        Args:
+            temp_dir: Directory for temporary PDF storage
+            extract_dir: Directory for PDF content extraction
+        """
         self.temp_dir = temp_dir
         self.extract_dir = extract_dir
         os.makedirs(temp_dir, exist_ok=True)
         os.makedirs(extract_dir, exist_ok=True)
 
     def is_pdf_url(self, url: str) -> bool:
-        """Check if URL points to PDF file"""
+        """Check if URL points to a PDF file.
+        
+        Args:
+            url: URL to check
+            
+        Returns:
+            True if URL is PDF, False otherwise
+        """
+        # Simple extension check
         if url.lower().endswith('.pdf'):
             return True
         
+        # Check content type from headers
         try:
             headers = requests.head(url, allow_redirects=True, timeout=10).headers
             content_type = headers.get('Content-Type', '').lower()
             return 'application/pdf' in content_type
         except Exception as e:
-            print(f"Error checking if URL is PDF: {e}")
+            logger.error(f"Error checking if URL is PDF: {e}")
             return False
 
-    def process_pdf(self, url: str, qr_path: str) -> Optional[str]:
-        """Process PDF URL and return document path"""
+    def process_pdf(self, url: str, qr_path: str) -> Optional[Dict[str, Any]]:
+        """Download and process PDF from URL.
+        
+        Args:
+            url: The PDF URL to download
+            qr_path: Path to QR code image
+            
+        Returns:
+            Dict containing PDF info or None if failed
+        """
         try:
-            print(f"Processing PDF URL: {url}")
+            logger.info(f"Processing PDF URL: {url}")
+            
+            # Create filename for PDF
+            parsed_url = urlparse(url)
+            filename = os.path.basename(parsed_url.path)
+            if not filename or not filename.lower().endswith('.pdf'):
+                filename = f"document_{hash(url)}.pdf"
+                
+            pdf_path = os.path.join(self.temp_dir, filename)
             
             # Download PDF
-            pdf_filename = f"temp_pdf_{int(time.time())}.pdf"
-            pdf_path = os.path.join(self.temp_dir, pdf_filename)
-            
             response = requests.get(url, stream=True, timeout=30)
             response.raise_for_status()
             
@@ -42,51 +76,45 @@ class PDFService(IPDFService):
                 for chunk in response.iter_content(chunk_size=8192):
                     f.write(chunk)
             
-            # Extract metadata
+            # Extract title from PDF metadata or filename
             title = self._extract_pdf_title(pdf_path, url)
-            content = self._extract_pdf_content(pdf_path)
             
-            # Create structured content
             return {
                 "title": title,
-                "content": content,
                 "pdf_path": pdf_path
             }
             
         except Exception as e:
-            print(f"Error processing PDF URL: {e}")
+            logger.error(f"Error processing PDF URL: {e}")
             return None
 
     def _extract_pdf_title(self, pdf_path: str, url: str) -> str:
-        """Extract title from PDF metadata or URL"""
+        """Extract title from PDF metadata or create from URL.
+        
+        Args:
+            pdf_path: Path to downloaded PDF file
+            url: Original URL
+            
+        Returns:
+            Title string
+        """
         try:
+            # Try to get title from PDF metadata
             with open(pdf_path, 'rb') as f:
                 reader = PyPDF2.PdfReader(f)
                 if reader.metadata and reader.metadata.title:
                     return reader.metadata.title
-        except Exception:
-            pass
-        
-        # Fallback to URL
-        try:
+                
+            # Fall back to filename from URL
             parsed_url = urlparse(url)
-            path_parts = parsed_url.path.split('/')
-            if path_parts and path_parts[-1]:
-                return os.path.splitext(path_parts[-1])[0].replace('_', ' ').replace('-', ' ')
-        except Exception:
-            pass
-        
-        return "PDF Document"
-
-    def _extract_pdf_content(self, pdf_path: str) -> str:
-        """Extract text content from PDF"""
-        try:
-            with open(pdf_path, 'rb') as f:
-                reader = PyPDF2.PdfReader(f)
-                content = []
-                for page in reader.pages:
-                    content.append(page.extract_text())
-                return "\n\n".join(content)
+            filename = os.path.basename(parsed_url.path)
+            if filename.lower().endswith('.pdf'):
+                filename = filename[:-4]  # Remove .pdf extension
+                
+            # Format filename as title
+            title = filename.replace('_', ' ').replace('-', ' ')
+            return title or "PDF Document"
+                
         except Exception as e:
-            print(f"Error extracting PDF content: {e}")
-            return "PDF content extraction failed"
+            logger.error(f"Error extracting PDF title: {e}")
+            return "PDF Document"

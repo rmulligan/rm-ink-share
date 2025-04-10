@@ -1,0 +1,9 @@
+{
+  "title": "Error: Could not scrape http://localhost:8000/test.md",
+  "structured_content": [
+    {
+      "type": "paragraph",
+      "content": "Failed to scrape content: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /test.md (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0xffff7c8f7410>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+    }
+  ]
+}

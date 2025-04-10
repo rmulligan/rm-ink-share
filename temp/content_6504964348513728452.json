@@ -1,0 +1,9 @@
+{
+  "title": "Error: Could not scrape https://raw.githubusercontent.com/remarkable-community/awesome-remarkable/main/README.md",
+  "structured_content": [
+    {
+      "type": "paragraph",
+      "content": "Failed to scrape content: 404 Client Error: Not Found for url: https://raw.githubusercontent.com/remarkable-community/awesome-remarkable/main/README.md"
+    }
+  ]
+}

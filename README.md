@@ -19,115 +19,112 @@ Receives URLs shared from iOS Shortcuts via Tailscale, generates QR codes, intel
 - Creates editable Remarkable documents (lines v6 format) containing:
   - The page title using Lines-Bold font with colored underline
   - Source URL reference with highlight color
-  - QR code with dashed border for quick access to the original URL
-  - Structured content with visual separation using dashed boxes
-- Optimized for Remarkable Pro:
-  - Uses exclusively Lines font family for properly filled-in text
-  - Distinguishes code blocks through background and dashed borders rather than font change
-  - Takes advantage of color display for visual hierarchy
-  - Properly sized for Remarkable Pro dimensions
-  - Uses dashed borders for visual separation of content blocks
-- Documents are created using HCL and converted with drawj2d
-- Uploads to Remarkable Cloud using rmapi for access on the tablet
+  - QR code for quick access to the original URL
+  - Extracted content with proper formatting
+- Uploads directly to Remarkable Cloud using rmapi
 
-## Setup
+## Installation
 
-1. Run the `setup.sh` script (if you haven't already).
-2. Place the `server.py` script inside the `app/` directory.
-3. Edit `app/server.py` to configure settings:
-   - `QR_OUTPUT_PATH`: Where QR codes are saved
-   - `TEMP_DIR`: Where temporary files are stored
-   - `RMAPI_PATH`: Path to rmapi executable
-   - `DRAWJ2D_PATH`: Path to drawj2d executable
-   - `RM_FOLDER`: Remarkable Cloud folder to upload to
-4. Make sure rmapi and drawj2d are installed and rmapi is authenticated
-5. Activate the virtual environment: `source venv/bin/activate`
-6. Install dependencies: `pip install -r requirements.txt`
+### Prerequisites
 
-## Running the Service
+- Python 3.9+
+- [Remarkable API (rmapi)](https://github.com/juruen/rmapi) - for cloud uploads
+- [drawj2d](https://gitlab.com/erw7/drawj2d) - for creating Remarkable documents
+- Optional: Node.js (for JavaScript-enabled web scraping)
 
-### Manual Start
-To run the server manually:
-```
-source venv/bin/activate
-python app/server.py
-```
+### Setup
 
-### As a System Service
-A systemd service file is provided for running as a background service:
-
-1. Install the service:
+1. Clone the repository:
    ```
-   ./service.sh install
+   git clone https://github.com/yourusername/pi_share_receiver.git
+   cd pi_share_receiver
    ```
 
-2. Start the service:
+2. Install Python dependencies:
    ```
-   ./service.sh start
-   ```
-
-3. Enable automatic start at boot:
-   ```
-   ./service.sh enable
+   pip install -r requirements.txt
    ```
 
-4. Check service status:
+3. Optional JavaScript scraper dependencies:
    ```
-   ./service.sh status
-   ```
-
-5. View service logs:
-   ```
-   ./service.sh logs
+   cd js
+   npm install
    ```
 
-## Testing
+4. Set up rmapi authentication:
+   ```
+   rmapi
+   ```
+   Follow the prompts to authenticate with your Remarkable account.
 
-A test script is provided to quickly verify the service is working:
+5. Install the service:
+   ```
+   ./setup_deps.sh
+   ```
 
-```
-./test_service.sh
-```
+## Configuration
 
-This will send a test URL to the service. You can also specify your own URL:
+The pi_share_receiver can be configured using environment variables or the `config.py` file. Key configuration options include:
 
-```
-./test_service.sh https://example.com
-```
-
-Check the service logs to see if the URL was processed successfully.
+| Environment Variable | Default | Description |
+|---------------------|---------|-------------|
+| PI_SHARE_HOST | 0.0.0.0 | Host address to listen on |
+| PI_SHARE_PORT | 9999 | Port to listen on |
+| PI_SHARE_TEMP | ./temp | Temporary file directory |
+| PI_SHARE_OUTPUT | ./output | Output directory for QR codes and other files |
+| PI_SHARE_RMAPI | /usr/local/bin/rmapi | Path to rmapi executable |
+| PI_SHARE_DRAWJ2D | /usr/local/bin/drawj2d | Path to drawj2d executable |
+| PI_SHARE_RM_FOLDER | / | Remarkable cloud folder for uploads |
+| PI_SHARE_MAX_RETRIES | 3 | Maximum retry attempts for network operations |
+| PI_SHARE_RETRY_DELAY | 2 | Base delay between retries (seconds) |
+| PI_SHARE_LOG_LEVEL | INFO | Logging level (DEBUG, INFO, WARNING, ERROR) |
+| PI_SHARE_LOG_FILE | pi_share_receiver.log | Path to log file |
 
 ## Usage
 
-Configure an Apple Shortcut to send a POST request with the URL to `http://<PI_TAILSCALE_IP>:9999/share`
+### Run the server
 
-The server accepts URLs in two formats:
-- JSON format: `{"url": "https://example.com"}`
-- Plain text: Simply the URL as the request body
-
-## Process Flow
-
-1. URL is received via HTTP POST
-2. Web content is scraped from the URL
-3. QR code is generated for the URL
-4. HCL script is created with the content formatting
-5. drawj2d converts the HCL script to Remarkable's lines v6 format (rmdoc)
-6. The rmdoc is uploaded to Remarkable Cloud via rmapi
-7. The document appears on the Remarkable tablet in editable format
-
-## Requirements
-
-- Python 3.x
-- Flask
-- qrcode[pil]
-- requests
-- beautifulsoup4
-- playwright (for JavaScript rendering)
-- pypdf2 (for PDF extraction)
-- drawj2d (installed separately)
-- rmapi (installed separately)
-
-You can install all Python dependencies by running:
 ```
-./setup_deps.sh
+python app/server.py
 ```
+
+Or as a service:
+
+```
+sudo systemctl start pi_share_receiver
+```
+
+### Share a URL
+
+Send a POST request to the server:
+
+```
+curl -X POST http://localhost:9999/share -d "https://example.com"
+```
+
+Or use the iOS Shortcuts app to send URLs directly.
+
+### Testing
+
+Run the test suite:
+
+```
+python -m unittest discover app/tests
+```
+
+## Remarkable Pro Compatibility
+
+This application is optimized for the Remarkable Pro tablet with its larger 1872×2404 pixel screen dimensions. If you're using a different Remarkable device, you may need to adjust the dimensions in `app/services/document_service.py`.
+
+## Troubleshooting
+
+Check the log file at `pi_share_receiver.log` for detailed error information.
+
+Common issues:
+- **Upload failures**: Ensure rmapi is properly authenticated
+- **Conversion errors**: Check that drawj2d is correctly installed
+- **Blank documents**: May indicate web scraping issues with complex sites
+
+## License
+
+[Your chosen license]

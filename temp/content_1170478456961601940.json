@@ -1,0 +1,18 @@
+{
+  "title": "Test - localhost:8000",
+  "structured_content": [
+    {
+      "type": "paragraph",
+      "content": "This is a test paragraph."
+    },
+    {
+      "type": "paragraph",
+      "content": "Another paragraph with **bold** text."
+    },
+    {
+      "type": "paragraph",
+      "content": "Scraped at: 2025-04-07 02:08:16"
+    }
+  ],
+  "images": []
+}

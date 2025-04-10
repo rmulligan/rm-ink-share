@@ -1,0 +1,26 @@
+{
+  "title": "Example Domain",
+  "structured_content": [
+    {
+      "type": "h1",
+      "content": "Example Domain"
+    },
+    {
+      "type": "paragraph",
+      "content": "This domain is for use in illustrative examples in documents. You may use this\n    domain in literature without prior coordination or asking for permission."
+    },
+    {
+      "type": "paragraph",
+      "content": "More information..."
+    },
+    {
+      "type": "paragraph",
+      "content": "Example DomainThis domain is for use in illustrative examples in documents. You may use this\n    domain in literature without prior coordination or asking for permission.More information..."
+    },
+    {
+      "type": "paragraph",
+      "content": "Scraped at: 2025-04-07 01:15:46"
+    }
+  ],
+  "images": []
+}

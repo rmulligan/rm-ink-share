@@ -1,0 +1,1494 @@
+{
+  "title": "Wikipedia",
+  "structured_content": [
+    {
+      "type": "h1",
+      "content": "WikipediaThe Free Encyclopedia"
+    },
+    {
+      "type": "h2",
+      "content": "1,000,000+articles"
+    },
+    {
+      "type": "h2",
+      "content": "100,000+articles"
+    },
+    {
+      "type": "h2",
+      "content": "10,000+articles"
+    },
+    {
+      "type": "h2",
+      "content": "1,000+articles"
+    },
+    {
+      "type": "h2",
+      "content": "100+articles"
+    },
+    {
+      "type": "paragraph",
+      "content": "Save your favorite articles to read offline, sync your reading lists across devices and customize your reading experience with the official Wikipedia app."
+    },
+    {
+      "type": "paragraph",
+      "content": "This page is available under theCreative Commons Attribution-ShareAlike LicenseTerms of UsePrivacy Policy"
+    },
+    {
+      "type": "list",
+      "list_type": "ul"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d8\u00a7\u00d9\u0084\u00d8\u00b9\u00d8\u00b1\u00d8\u00a8\u00d9\u008a\u00d8\u00a9"
+    },
+    {
+      "type": "bullet",
+      "content": "Deutsch"
+    },
+    {
+      "type": "bullet",
+      "content": "English"
+    },
+    {
+      "type": "bullet",
+      "content": "Espa\u00c3\u00b1ol"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d9\u0081\u00d8\u00a7\u00d8\u00b1\u00d8\u00b3\u00db\u008c"
+    },
+    {
+      "type": "bullet",
+      "content": "Fran\u00c3\u00a7ais"
+    },
+    {
+      "type": "bullet",
+      "content": "Italiano"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d9\u0085\u00d8\u00b5\u00d8\u00b1\u00d9\u0089"
+    },
+    {
+      "type": "bullet",
+      "content": "Nederlands"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e6\u0097\u00a5\u00e6\u009c\u00ac\u00e8\u00aa\u009e"
+    },
+    {
+      "type": "bullet",
+      "content": "Polski"
+    },
+    {
+      "type": "bullet",
+      "content": "Portugu\u00c3\u00aas"
+    },
+    {
+      "type": "bullet",
+      "content": "Sinugboanong Binisaya"
+    },
+    {
+      "type": "bullet",
+      "content": "Svenska"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u00a3\u00d0\u00ba\u00d1\u0080\u00d0\u00b0\u00d1\u0097\u00d0\u00bd\u00d1\u0081\u00d1\u008c\u00d0\u00ba\u00d0\u00b0"
+    },
+    {
+      "type": "bullet",
+      "content": "Ti\u00e1\u00ba\u00bfng Vi\u00e1\u00bb\u0087t"
+    },
+    {
+      "type": "bullet",
+      "content": "Winaray"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e4\u00b8\u00ad\u00e6\u0096\u0087"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u00a0\u00d1\u0083\u00d1\u0081\u00d1\u0081\u00d0\u00ba\u00d0\u00b8\u00d0\u00b9"
+    },
+    {
+      "type": "list",
+      "list_type": "ul"
+    },
+    {
+      "type": "bullet",
+      "content": "Afrikaans"
+    },
+    {
+      "type": "bullet",
+      "content": "Asturianu"
+    },
+    {
+      "type": "bullet",
+      "content": "Az\u00c9\u0099rbaycanca"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u0091\u00d1\u008a\u00d0\u00bb\u00d0\u00b3\u00d0\u00b0\u00d1\u0080\u00d1\u0081\u00d0\u00ba\u00d0\u00b8"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e9\u0096\u00a9\u00e5\u008d\u0097\u00e8\u00aa\u009e / B\u00c3\u00a2n-l\u00c3\u00a2m-g\u00c3\u00ba"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00a6\u00ac\u00e0\u00a6\u00be\u00e0\u00a6\u0082\u00e0\u00a6\u00b2\u00e0\u00a6\u00be"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u0091\u00d0\u00b5\u00d0\u00bb\u00d0\u00b0\u00d1\u0080\u00d1\u0083\u00d1\u0081\u00d0\u00ba\u00d0\u00b0\u00d1\u008f"
+    },
+    {
+      "type": "bullet",
+      "content": "Catal\u00c3"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00c4\u008ce\u00c5\u00a1tina"
+    },
+    {
+      "type": "bullet",
+      "content": "Cymraeg"
+    },
+    {
+      "type": "bullet",
+      "content": "Dansk"
+    },
+    {
+      "type": "bullet",
+      "content": "Eesti"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00ce\u0095\u00ce\u00bb\u00ce\u00bb\u00ce\u00b7\u00ce\u00bd\u00ce\u00b9\u00ce\u00ba\u00ce\u00ac"
+    },
+    {
+      "type": "bullet",
+      "content": "Esperanto"
+    },
+    {
+      "type": "bullet",
+      "content": "Euskara"
+    },
+    {
+      "type": "bullet",
+      "content": "Galego"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00ed\u0095\u009c\u00ea\u00b5\u00ad\u00ec\u0096\u00b4"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d5\u0080\u00d5\u00a1\u00d5\u00b5\u00d5\u00a5\u00d6\u0080\u00d5\u00a5\u00d5\u00b6"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00a4\u00b9\u00e0\u00a4\u00bf\u00e0\u00a4\u00a8\u00e0\u00a5\u008d\u00e0\u00a4\u00a6\u00e0\u00a5\u0080"
+    },
+    {
+      "type": "bullet",
+      "content": "Hrvatski"
+    },
+    {
+      "type": "bullet",
+      "content": "Bahasa Indonesia"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d7\u00a2\u00d7\u0091\u00d7\u00a8\u00d7\u0099\u00d7\u00aa"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e1\u0083\u00a5\u00e1\u0083\u0090\u00e1\u0083\u00a0\u00e1\u0083\u0097\u00e1\u0083\u00a3\u00e1\u0083\u009a\u00e1\u0083\u0098"
+    },
+    {
+      "type": "bullet",
+      "content": "Ladin"
+    },
+    {
+      "type": "bullet",
+      "content": "Latina"
+    },
+    {
+      "type": "bullet",
+      "content": "Latvie\u00c5\u00a1u"
+    },
+    {
+      "type": "bullet",
+      "content": "Lietuvi\u00c5\u00b3"
+    },
+    {
+      "type": "bullet",
+      "content": "Magyar"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u009c\u00d0\u00b0\u00d0\u00ba\u00d0\u00b5\u00d0\u00b4\u00d0\u00be\u00d0\u00bd\u00d1\u0081\u00d0\u00ba\u00d0\u00b8"
+    },
+    {
+      "type": "bullet",
+      "content": "Bahasa Melayu"
+    },
+    {
+      "type": "bullet",
+      "content": "Bahaso Minangkabau"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e1\u0080\u0099\u00e1\u0080\u00bc\u00e1\u0080\u0094\u00e1\u0080\u00ba\u00e1\u0080\u0099\u00e1\u0080\u00ac\u00e1\u0080\u0098\u00e1\u0080\u00ac\u00e1\u0080\u009e\u00e1\u0080\u00ac"
+    },
+    {
+      "type": "bullet",
+      "content": "Norskbokm\u00c3\u00a5lnynorsk"
+    },
+    {
+      "type": "bullet",
+      "content": "bokm\u00c3\u00a5l"
+    },
+    {
+      "type": "bullet",
+      "content": "nynorsk"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u009d\u00d0\u00be\u00d1\u0085\u00d1\u0087\u00d0\u00b8\u00d0\u00b9\u00d0\u00bd"
+    },
+    {
+      "type": "bullet",
+      "content": "O\u00ca\u00bbzbekcha / \u00d0\u008e\u00d0\u00b7\u00d0\u00b1\u00d0\u00b5\u00d0\u00ba\u00d1\u0087\u00d0\u00b0"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d2\u009a\u00d0\u00b0\u00d0\u00b7\u00d0\u00b0\u00d2\u009b\u00d1\u0088\u00d0\u00b0/Qazaq\u00c5\u009fa/\u00d9\u0082\u00d8\u00a7\u00d8\u00b2\u00d8\u00a7\u00d9\u0082\u00d8\u00b4\u00d8\u00a7"
+    },
+    {
+      "type": "bullet",
+      "content": "Rom\u00c3\u00a2n\u00c4\u0083"
+    },
+    {
+      "type": "bullet",
+      "content": "Shqip"
+    },
+    {
+      "type": "bullet",
+      "content": "Simple English"
+    },
+    {
+      "type": "bullet",
+      "content": "Sloven\u00c4\u008dina"
+    },
+    {
+      "type": "bullet",
+      "content": "Sloven\u00c5\u00a1\u00c4\u008dina"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u00a1\u00d1\u0080\u00d0\u00bf\u00d1\u0081\u00d0\u00ba\u00d0\u00b8 / Srpski"
+    },
+    {
+      "type": "bullet",
+      "content": "Srpskohrvatski / \u00d0\u00a1\u00d1\u0080\u00d0\u00bf\u00d1\u0081\u00d0\u00ba\u00d0\u00be\u00d1\u0085\u00d1\u0080\u00d0\u00b2\u00d0\u00b0\u00d1\u0082\u00d1\u0081\u00d0\u00ba\u00d0\u00b8"
+    },
+    {
+      "type": "bullet",
+      "content": "Suomi"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00ae\u00a4\u00e0\u00ae\u00ae\u00e0\u00ae\u00bf\u00e0\u00ae\u00b4\u00e0\u00af\u008d"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u00a2\u00d0\u00b0\u00d1\u0082\u00d0\u00b0\u00d1\u0080\u00d1\u0087\u00d0\u00b0 / Tatar\u00c3\u00a7a"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00b0\u00a4\u00e0\u00b1\u0086\u00e0\u00b0\u00b2\u00e0\u00b1\u0081\u00e0\u00b0\u0097\u00e0\u00b1\u0081"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00b8\u00a0\u00e0\u00b8\u00b2\u00e0\u00b8\u00a9\u00e0\u00b8\u00b2\u00e0\u00b9\u0084\u00e0\u00b8\u0097\u00e0\u00b8\u00a2"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u00a2\u00d0\u00be\u00d2\u00b7\u00d0\u00b8\u00d0\u00ba\u00d3\u00a3"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d8\u00aa\u00db\u0086\u00d8\u00b1\u00da\u00a9\u00d8\u00ac\u00d9\u0087"
+    },
+    {
+      "type": "bullet",
+      "content": "T\u00c3\u00bcrk\u00c3\u00a7e"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d8\u00a7\u00d8\u00b1\u00d8\u00af\u00d9\u0088"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e7\u00b2\u00b5\u00e8\u00aa\u009e"
+    },
+    {
+      "type": "list",
+      "list_type": "ul"
+    },
+    {
+      "type": "bullet",
+      "content": "bokm\u00c3\u00a5l"
+    },
+    {
+      "type": "bullet",
+      "content": "nynorsk"
+    },
+    {
+      "type": "list",
+      "list_type": "ul"
+    },
+    {
+      "type": "bullet",
+      "content": "Bahsa Ac\u00c3\u00a8h"
+    },
+    {
+      "type": "bullet",
+      "content": "Alemannisch"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e1\u008a\u00a0\u00e1\u0088\u009b\u00e1\u0088\u00ad\u00e1\u008a\u009b"
+    },
+    {
+      "type": "bullet",
+      "content": "Aragon\u00c3\u00a9s"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d4\u00b1\u00d6\u0080\u00d5\u00a5\u00d6\u0082\u00d5\u00b4\u00d5\u00bf\u00d5\u00a1\u00d5\u00b0\u00d5\u00a1\u00d5\u00b5\u00d5\u00a5\u00d6\u0080\u00d5\u00a7\u00d5\u00b6"
+    },
+    {
+      "type": "bullet",
+      "content": "Bahasa Hulontalo"
+    },
+    {
+      "type": "bullet",
+      "content": "Basa Bali"
+    },
+    {
+      "type": "bullet",
+      "content": "Bahasa Banjar"
+    },
+    {
+      "type": "bullet",
+      "content": "Basa Banyumasan"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u0091\u00d0\u00b0\u00d1\u0088\u00d2\u00a1\u00d0\u00be\u00d1\u0080\u00d1\u0082\u00d1\u0081\u00d0\u00b0"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u0091\u00d0\u00b5\u00d0\u00bb\u00d0\u00b0\u00d1\u0080\u00d1\u0083\u00d1\u0081\u00d0\u00ba\u00d0\u00b0\u00d1\u008f (\u00d1\u0082\u00d0\u00b0\u00d1\u0080\u00d0\u00b0\u00d1\u0088\u00d0\u00ba\u00d0\u00b5\u00d0\u00b2\u00d1\u0096\u00d1\u0086\u00d0\u00b0)"
+    },
+    {
+      "type": "bullet",
+      "content": "Bikol Central"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00a6\u00ac\u00e0\u00a6\u00bf\u00e0\u00a6\u00b7\u00e0\u00a7\u008d\u00e0\u00a6\u00a3\u00e0\u00a7\u0081\u00e0\u00a6\u00aa\u00e0\u00a7\u008d\u00e0\u00a6\u00b0\u00e0\u00a6\u00bf\u00e0\u00a6\u00af\u00e0\u00a6\u00bc\u00e0\u00a6\u00be \u00e0\u00a6\u00ae\u00e0\u00a6\u00a3\u00e0\u00a6\u00bf\u00e0\u00a6\u00aa\u00e0\u00a7\u0081\u00e0\u00a6\u00b0\u00e0\u00a7\u0080"
+    },
+    {
+      "type": "bullet",
+      "content": "Boarisch"
+    },
+    {
+      "type": "bullet",
+      "content": "Bosanski"
+    },
+    {
+      "type": "bullet",
+      "content": "Brezhoneg"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u00a7\u00d3\u0091\u00d0\u00b2\u00d0\u00b0\u00d1\u0088\u00d0\u00bb\u00d0\u00b0"
+    },
+    {
+      "type": "bullet",
+      "content": "Dagbanli"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d8\u00a7\u00d9\u0084\u00d8\u00af\u00d8\u00a7\u00d8\u00b1\u00d8\u00ac\u00d8\u00a9"
+    },
+    {
+      "type": "bullet",
+      "content": "Din\u00c3\u00a9 Bizaad"
+    },
+    {
+      "type": "bullet",
+      "content": "Emigli\u00c3\u00a0n\u00e2\u0080\u0093Rumagn\u00c3\u00b2l"
+    },
+    {
+      "type": "bullet",
+      "content": "Fiji Hindi"
+    },
+    {
+      "type": "bullet",
+      "content": "F\u00c3\u00b8royskt"
+    },
+    {
+      "type": "bullet",
+      "content": "Frysk"
+    },
+    {
+      "type": "bullet",
+      "content": "Gaeilge"
+    },
+    {
+      "type": "bullet",
+      "content": "G\u00c3\u00a0idhlig"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00da\u00af\u00db\u008c\u00d9\u0084\u00da\u00a9\u00db\u008c"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00aa\u0097\u00e0\u00ab\u0081\u00e0\u00aa\u009c\u00e0\u00aa\u00b0\u00e0\u00aa\u00be\u00e0\u00aa\u00a4\u00e0\u00ab\u0080"
+    },
+    {
+      "type": "bullet",
+      "content": "Hak-k\u00c3\u00a2-ng\u00c3\u00ae / \u00e5\u00ae\u00a2\u00e5\u00ae\u00b6\u00e8\u00aa\u009e"
+    },
+    {
+      "type": "bullet",
+      "content": "Hausa"
+    },
+    {
+      "type": "bullet",
+      "content": "Hornjoserbsce"
+    },
+    {
+      "type": "bullet",
+      "content": "Ido"
+    },
+    {
+      "type": "bullet",
+      "content": "Igbo"
+    },
+    {
+      "type": "bullet",
+      "content": "Ilokano"
+    },
+    {
+      "type": "bullet",
+      "content": "Interlingua"
+    },
+    {
+      "type": "bullet",
+      "content": "Interlingue"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u0098\u00d1\u0080\u00d0\u00be\u00d0\u00bd"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00c3\u008dslenska"
+    },
+    {
+      "type": "bullet",
+      "content": "Jawa"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00b2\u0095\u00e0\u00b2\u00a8\u00e0\u00b3\u008d\u00e0\u00b2\u00a8\u00e0\u00b2\u00a1"
+    },
+    {
+      "type": "bullet",
+      "content": "Kapampangan"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e1\u009e\u0097\u00e1\u009e\u00b6\u00e1\u009e\u009f\u00e1\u009e\u00b6\u00e1\u009e\u0081\u00e1\u009f\u0092\u00e1\u009e\u0098\u00e1\u009f\u0082\u00e1\u009e\u009a"
+    },
+    {
+      "type": "bullet",
+      "content": "Kotava"
+    },
+    {
+      "type": "bullet",
+      "content": "Krey\u00c3\u00b2l Ayisyen"
+    },
+    {
+      "type": "bullet",
+      "content": "Kurd\u00c3\u00ae/\u00d9\u0083\u00d9\u0088\u00d8\u00b1\u00d8\u00af\u00db\u008c"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00da\u00a9\u00d9\u0088\u00d8\u00b1\u00d8\u00af\u00db\u008c\u00db\u008c \u00d9\u0086\u00d8\u00a7\u00d9\u0088\u00db\u0095\u00d9\u0086\u00d8\u00af\u00db\u008c"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u009a\u00d1\u008b\u00d1\u0080\u00d0\u00b3\u00d1\u008b\u00d0\u00b7\u00d1\u0087\u00d0\u00b0"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u009a\u00d1\u008b\u00d1\u0080\u00d1\u008b\u00d0\u00ba \u00d0\u00bc\u00d0\u00b0\u00d1\u0080\u00d1\u008b"
+    },
+    {
+      "type": "bullet",
+      "content": "L\u00c3\u00abtzebuergesch"
+    },
+    {
+      "type": "bullet",
+      "content": "L\u00c3\u00acgure"
+    },
+    {
+      "type": "bullet",
+      "content": "Limburgs"
+    },
+    {
+      "type": "bullet",
+      "content": "Lombard"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00a4\u00ae\u00e0\u00a5\u0088\u00e0\u00a4\u00a5\u00e0\u00a4\u00bf\u00e0\u00a4\u00b2\u00e0\u00a5\u0080"
+    },
+    {
+      "type": "bullet",
+      "content": "Malagasy"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00b4\u00ae\u00e0\u00b4\u00b2\u00e0\u00b4\u00af\u00e0\u00b4\u00be\u00e0\u00b4\u00b3\u00e0\u00b4\u0082"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00a4\u00ae\u00e0\u00a4\u00b0\u00e0\u00a4\u00be\u00e0\u00a4\u00a0\u00e0\u00a5\u0080"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e1\u0083\u009b\u00e1\u0083\u0090\u00e1\u0083\u00a0\u00e1\u0083\u0092\u00e1\u0083\u0090\u00e1\u0083\u009a\u00e1\u0083\u00a3\u00e1\u0083\u00a0\u00e1\u0083\u0098"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d9\u0085\u00d8\u00a7\u00d8\u00b2\u00d9\u0090\u00d8\u00b1\u00d9\u0088\u00d9\u0086\u00db\u008c"
+    },
+    {
+      "type": "bullet",
+      "content": "M\u00c3\u00acng-d\u00c4\u0095\u00cc\u00a4ng-ng\u00e1\u00b9\u00b3\u00cc\u0084 / \u00e9\u0096\u00a9\u00e6\u009d\u00b1\u00e8\u00aa\u009e"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u009c\u00d0\u00be\u00d0\u00bd\u00d0\u00b3\u00d0\u00be\u00d0\u00bb"
+    },
+    {
+      "type": "bullet",
+      "content": "Napulitano"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00a4\u00a8\u00e0\u00a5\u0087\u00e0\u00a4\u00aa\u00e0\u00a4\u00be\u00e0\u00a4\u00b2 \u00e0\u00a4\u00ad\u00e0\u00a4\u00be\u00e0\u00a4\u00b7\u00e0\u00a4\u00be"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00a4\u00a8\u00e0\u00a5\u0087\u00e0\u00a4\u00aa\u00e0\u00a4\u00be\u00e0\u00a4\u00b2\u00e0\u00a5\u0080"
+    },
+    {
+      "type": "bullet",
+      "content": "Nordfriisk"
+    },
+    {
+      "type": "bullet",
+      "content": "Occitan"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u009e\u00d0\u00bb\u00d1\u008b\u00d0\u00ba \u00d0\u00bc\u00d0\u00b0\u00d1\u0080\u00d0\u00b8\u00d0\u00b9"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00ac\u0093\u00e0\u00ac\u00a1\u00e0\u00ac\u00bf\u00e0\u00ac\u00bc\u00e0\u00ac\u0086"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00a6\u0085\u00e0\u00a6\u00b8\u00e0\u00a6\u00ae\u00e0\u00a7\u0080\u00e0\u00a6\u00af\u00e0\u00a6\u00be\u00e0\u00a6\u00bc"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00a8\u00aa\u00e0\u00a9\u00b0\u00e0\u00a8\u009c\u00e0\u00a8\u00be\u00e0\u00a8\u00ac\u00e0\u00a9\u0080"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d9\u00be\u00d9\u0086\u00d8\u00ac\u00d8\u00a7\u00d8\u00a8\u00db\u008c (\u00d8\u00b4\u00d8\u00a7\u00db\u0081 \u00d9\u0085\u00da\u00a9\u00da\u00be\u00db\u008c)"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d9\u00be\u00da\u009a\u00d8\u00aa\u00d9\u0088"
+    },
+    {
+      "type": "bullet",
+      "content": "Piemont\u00c3\u00a8is"
+    },
+    {
+      "type": "bullet",
+      "content": "Plattd\u00c3\u00bc\u00c3\u00bctsch"
+    },
+    {
+      "type": "bullet",
+      "content": "Q\u00c4\u00b1r\u00c4\u00b1mtatarca"
+    },
+    {
+      "type": "bullet",
+      "content": "Runa Simi"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00a4\u00b8\u00e0\u00a4\u0082\u00e0\u00a4\u00b8\u00e0\u00a5\u008d\u00e0\u00a4\u0095\u00e0\u00a5\u0083\u00e0\u00a4\u00a4\u00e0\u00a4\u00ae\u00e0\u00a5\u008d"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e1\u00b1\u00a5\u00e1\u00b1\u009f\u00e1\u00b1\u00b1\u00e1\u00b1\u009b\u00e1\u00b1\u009f\u00e1\u00b1\u00b2\u00e1\u00b1\u00a4"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d8\u00b3\u00d8\u00b1\u00d8\u00a7\u00d8\u00a6\u00db\u008c\u00da\u00a9\u00db\u008c"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u00a1\u00d0\u00b0\u00d1\u0085\u00d0\u00b0 \u00d0\u00a2\u00d1\u008b\u00d0\u00bb\u00d0\u00b0"
+    },
+    {
+      "type": "bullet",
+      "content": "Scots"
+    },
+    {
+      "type": "bullet",
+      "content": "ChiShona"
+    },
+    {
+      "type": "bullet",
+      "content": "Sicilianu"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00b7\u0083\u00e0\u00b7\u0092\u00e0\u00b6\u0082\u00e0\u00b7\u0084\u00e0\u00b6\u00bd"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d8\u00b3\u00d9\u0086\u00da\u008c\u00d9\u008a"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00c5\u009al\u00c5\u00afnski"
+    },
+    {
+      "type": "bullet",
+      "content": "Basa Sunda"
+    },
+    {
+      "type": "bullet",
+      "content": "Kiswahili"
+    },
+    {
+      "type": "bullet",
+      "content": "Tagalog"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e1\u0081\u00bd\u00e1\u0082\u0083\u00e1\u0082\u0087\u00e1\u0080\u009e\u00e1\u0082\u0083\u00e1\u0082\u0087\u00e1\u0080\u0090\u00e1\u0082\u0086\u00e1\u0080\u00b8"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e2\u00b5\u009c\u00e2\u00b4\u00b0\u00e2\u00b5\u008e\u00e2\u00b4\u00b0\u00e2\u00b5\u00a3\u00e2\u00b5\u0089\u00e2\u00b5\u0096\u00e2\u00b5\u009c \u00e2\u00b5\u009c\u00e2\u00b4\u00b0\u00e2\u00b5\u008f\u00e2\u00b4\u00b0\u00e2\u00b5\u00a1\u00e2\u00b4\u00b0\u00e2\u00b5\u00a2\u00e2\u00b5\u009c"
+    },
+    {
+      "type": "bullet",
+      "content": "chiTumbuka"
+    },
+    {
+      "type": "bullet",
+      "content": "Basa Ugi"
+    },
+    {
+      "type": "bullet",
+      "content": "V\u00c3\u00a8neto"
+    },
+    {
+      "type": "bullet",
+      "content": "Volap\u00c3\u00bck"
+    },
+    {
+      "type": "bullet",
+      "content": "Walon"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e6\u0096\u0087\u00e8\u00a8\u0080"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e5\u0090\u00b4\u00e8\u00af\u00ad"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d7\u0099\u00d7\u0099\u00d6\u00b4\u00d7\u0093\u00d7\u0099\u00d7\u00a9"
+    },
+    {
+      "type": "bullet",
+      "content": "Yor\u00c3\u00b9b\u00c3\u00a1"
+    },
+    {
+      "type": "bullet",
+      "content": "Zazaki"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00c5\u00beemait\u00c4\u0097\u00c5\u00a1ka"
+    },
+    {
+      "type": "bullet",
+      "content": "isiZulu"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00ea\u00af\u0083\u00ea\u00af\u00a4\u00ea\u00af\u0087\u00ea\u00af\u00a9 \u00ea\u00af\u0082\u00ea\u00af\u00a3\u00ea\u00af\u009f"
+    },
+    {
+      "type": "list",
+      "list_type": "ul"
+    },
+    {
+      "type": "bullet",
+      "content": "Dzhudezmo/\u00d7\u009c\u00d7\u0090\u00d7\u0093\u00d7\u0099\u00d7\u00a0\u00d7\u0095"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u0090\u00d0\u00b4\u00d1\u008b\u00d0\u00b3\u00d1\u008d\u00d0\u00b1\u00d0\u00b7\u00d1\u008d"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00c3\u0086nglisc"
+    },
+    {
+      "type": "bullet",
+      "content": "Anar\u00c3\u00a2\u00c5\u00a1kiel\u00c3\u00a2"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00a4\u0085\u00e0\u00a4\u0082\u00e0\u00a4\u0097\u00e0\u00a4\u00bf\u00e0\u00a4\u0095\u00e0\u00a4\u00be"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u0090\u00d4\u00a5\u00d1\u0081\u00d1\u0088\u00d3\u0099\u00d0\u00b0"
+    },
+    {
+      "type": "bullet",
+      "content": "arm\u00c3\u00a3neashti"
+    },
+    {
+      "type": "bullet",
+      "content": "Arpitan"
+    },
+    {
+      "type": "bullet",
+      "content": "atikamekw"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00dc\u0090\u00dc\u00ac\u00dc\u0098\u00dc\u00aa\u00dc\u009d\u00dc\u0090"
+    },
+    {
+      "type": "bullet",
+      "content": "Ava\u00c3\u00b1e\u00e2\u0080\u0099\u00e1\u00ba\u00bd"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u0090\u00d0\u00b2\u00d0\u00b0\u00d1\u0080"
+    },
+    {
+      "type": "bullet",
+      "content": "Aymar"
+    },
+    {
+      "type": "bullet",
+      "content": "Betawi"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00a4\u00ad\u00e0\u00a5\u008b\u00e0\u00a4\u009c\u00e0\u00a4\u00aa\u00e0\u00a5\u0081\u00e0\u00a4\u00b0\u00e0\u00a5\u0080"
+    },
+    {
+      "type": "bullet",
+      "content": "Bislama"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00bd\u0096\u00e0\u00bd\u00bc\u00e0\u00bd\u0091\u00e0\u00bc\u008b\u00e0\u00bd\u00a1\u00e0\u00bd\u00b2\u00e0\u00bd\u0082"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u0091\u00d1\u0083\u00d1\u0080\u00d1\u008f\u00d0\u00b0\u00d0\u00b4"
+    },
+    {
+      "type": "bullet",
+      "content": "Chavacano de Zamboanga"
+    },
+    {
+      "type": "bullet",
+      "content": "Chichewa"
+    },
+    {
+      "type": "bullet",
+      "content": "Corsu"
+    },
+    {
+      "type": "bullet",
+      "content": "Vahcuengh / \u00e8\u00a9\u00b1\u00e5\u0083\u00ae"
+    },
+    {
+      "type": "bullet",
+      "content": "Dagaare"
+    },
+    {
+      "type": "bullet",
+      "content": "Davvis\u00c3\u00a1megiella"
+    },
+    {
+      "type": "bullet",
+      "content": "Deitsch"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00de\u008b\u00de\u00a8\u00de\u0088\u00de\u00ac\u00de\u0080\u00de\u00a8\u00de\u0084\u00de\u00a6\u00de\u0090\u00de\u00b0"
+    },
+    {
+      "type": "bullet",
+      "content": "Dolnoserbski"
+    },
+    {
+      "type": "bullet",
+      "content": "Dusun Bundu-liwan"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u00ad\u00d1\u0080\u00d0\u00b7\u00d1\u008f\u00d0\u00bd\u00d1\u008c"
+    },
+    {
+      "type": "bullet",
+      "content": "Estreme\u00c3\u00b1u"
+    },
+    {
+      "type": "bullet",
+      "content": "E\u00ca\u008begbe"
+    },
+    {
+      "type": "bullet",
+      "content": "F\u00c9\u0094\u00cc\u0080ngb\u00c3\u00a8"
+    },
+    {
+      "type": "bullet",
+      "content": "Fulfulde"
+    },
+    {
+      "type": "bullet",
+      "content": "Furlan"
+    },
+    {
+      "type": "bullet",
+      "content": "Gaelg"
+    },
+    {
+      "type": "bullet",
+      "content": "Gagauz"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u0093\u00d3\u0080\u00d0\u00b0\u00d0\u00bb\u00d0\u00b3\u00d3\u0080\u00d0\u00b0\u00d0\u00b9"
+    },
+    {
+      "type": "bullet",
+      "content": "Ghanaian Pidgin"
+    },
+    {
+      "type": "bullet",
+      "content": "G\u00c4\u00a9k\u00c5\u00a9y\u00c5\u00a9"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e8\u00b5\u00a3\u00e8\u00af\u00ad / \u00e8\u00b4\u009b\u00e8\u00aa\u009e"
+    },
+    {
+      "type": "bullet",
+      "content": "Gungbe"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u00a5\u00d0\u00b0\u00d0\u00bb\u00d1\u008c\u00d0\u00bc\u00d0\u00b3"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00ca\u00bb\u00c5\u008clelo Hawai\u00ca\u00bbi"
+    },
+    {
+      "type": "bullet",
+      "content": "Ikinyarwanda"
+    },
+    {
+      "type": "bullet",
+      "content": "Jaku Iban"
+    },
+    {
+      "type": "bullet",
+      "content": "Kab\u00c9\u00a9y\u00c9\u009b"
+    },
+    {
+      "type": "bullet",
+      "content": "Yerwa Kanuri"
+    },
+    {
+      "type": "bullet",
+      "content": "Kasz\u00c3\u00abbsczi"
+    },
+    {
+      "type": "bullet",
+      "content": "Kernewek"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u009a\u00d0\u00be\u00d0\u00bc\u00d0\u00b8"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u009f\u00d0\u00b5\u00d1\u0080\u00d0\u00b5\u00d0\u00bc \u00d0\u00ba\u00d0\u00be\u00d0\u00bc\u00d0\u00b8"
+    },
+    {
+      "type": "bullet",
+      "content": "Kongo"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00a4\u0095\u00e0\u00a5\u008b\u00e0\u00a4\u0082\u00e0\u00a4\u0095\u00e0\u00a4\u00a3\u00e0\u00a5\u0080 / Konknni"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d9\u0083\u00d9\u00b2\u00d8\u00b4\u00d9\u008f\u00d8\u00b1"
+    },
+    {
+      "type": "bullet",
+      "content": "Kriy\u00c3\u00b2l Gwiyannen"
+    },
+    {
+      "type": "bullet",
+      "content": "Kumoring"
+    },
+    {
+      "type": "bullet",
+      "content": "K\u00ca\u008bsaal"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00ba\u009e\u00e0\u00ba\u00b2\u00e0\u00ba\u00aa\u00e0\u00ba\u00b2\u00e0\u00ba\u00a5\u00e0\u00ba\u00b2\u00e0\u00ba\u00a7"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u009b\u00d0\u00b0\u00d0\u00ba\u00d0\u00ba\u00d1\u0083"
+    },
+    {
+      "type": "bullet",
+      "content": "Latga\u00c4\u00bcu"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u009b\u00d0\u00b5\u00d0\u00b7\u00d0\u00b3\u00d0\u00b8"
+    },
+    {
+      "type": "bullet",
+      "content": "Li Niha"
+    },
+    {
+      "type": "bullet",
+      "content": "Ling\u00c3\u00a1la"
+    },
+    {
+      "type": "bullet",
+      "content": "Lingua Franca Nova"
+    },
+    {
+      "type": "bullet",
+      "content": "livvinkarjala"
+    },
+    {
+      "type": "bullet",
+      "content": "lojban"
+    },
+    {
+      "type": "bullet",
+      "content": "Luganda"
+    },
+    {
+      "type": "bullet",
+      "content": "Madhur\u00c3\u00a2"
+    },
+    {
+      "type": "bullet",
+      "content": "Malti"
+    },
+    {
+      "type": "bullet",
+      "content": "Mandailing"
+    },
+    {
+      "type": "bullet",
+      "content": "M\u00c4\u0081ori"
+    },
+    {
+      "type": "bullet",
+      "content": "Mirand\u00c3\u00a9s"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u009c\u00d0\u00be\u00d0\u00ba\u00d1\u0088\u00d0\u00b5\u00d0\u00bd\u00d1\u008c"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e1\u0080\u0098\u00e1\u0080\u00ac\u00e1\u0080\u009e\u00e1\u0080\u00ac \u00e1\u0080\u0099\u00e1\u0080\u0094\u00e1\u0080\u00ba"
+    },
+    {
+      "type": "bullet",
+      "content": "Moore"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00df\u0092\u00df\u009e\u00df\u008f"
+    },
+    {
+      "type": "bullet",
+      "content": "Na Vosa Vaka-Viti"
+    },
+    {
+      "type": "bullet",
+      "content": "N\u00c4\u0081huatlaht\u00c5\u008dlli"
+    },
+    {
+      "type": "bullet",
+      "content": "Naij\u00c3\u00a1"
+    },
+    {
+      "type": "bullet",
+      "content": "Nedersaksisch"
+    },
+    {
+      "type": "bullet",
+      "content": "Nouormand / Normaund"
+    },
+    {
+      "type": "bullet",
+      "content": "Novial"
+    },
+    {
+      "type": "bullet",
+      "content": "Afaan Oromoo"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e1\u0080\u0095\u00e1\u0080\u00a1\u00e1\u0080\u00ad\u00e1\u0080\u00af\u00e1\u0080\u009d\u00e1\u0080\u00ba\u00e1\u0082\u008f\u00e1\u0080\u0098\u00e1\u0080\u00ac\u00e1\u0082\u008f\u00e1\u0080\u009e\u00e1\u0080\u00ac\u00e1\u0082\u008f"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00a4\u00aa\u00e0\u00a4\u00be\u00e0\u00a4\u00b2\u00e0\u00a4\u00bf"
+    },
+    {
+      "type": "bullet",
+      "content": "Pangasin\u00c3\u00a1n"
+    },
+    {
+      "type": "bullet",
+      "content": "Pangcah"
+    },
+    {
+      "type": "bullet",
+      "content": "Papiamentu"
+    },
+    {
+      "type": "bullet",
+      "content": "Patois"
+    },
+    {
+      "type": "bullet",
+      "content": "Pf\u00c3\u00a4lzisch"
+    },
+    {
+      "type": "bullet",
+      "content": "Picard"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u009a\u00d1\u008a\u00d0\u00b0\u00d1\u0080\u00d0\u00b0\u00d1\u0087\u00d0\u00b0\u00d0\u00b9\u00e2\u0080\u0093\u00d0\u00bc\u00d0\u00b0\u00d0\u00bb\u00d0\u00ba\u00d1\u008a\u00d0\u00b0\u00d1\u0080"
+    },
+    {
+      "type": "bullet",
+      "content": "Qaraqalpaqsha"
+    },
+    {
+      "type": "bullet",
+      "content": "Ripoarisch"
+    },
+    {
+      "type": "bullet",
+      "content": "Rumantsch"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u00a0\u00d1\u0083\u00d1\u0081\u00d0\u00b8\u00d0\u00bd\u00d1\u008c\u00d1\u0081\u00d0\u00ba\u00d1\u008b\u00d0\u00b9"
+    },
+    {
+      "type": "bullet",
+      "content": "Sakizaya"
+    },
+    {
+      "type": "bullet",
+      "content": "Gagana S\u00c4\u0081moa"
+    },
+    {
+      "type": "bullet",
+      "content": "Sardu"
+    },
+    {
+      "type": "bullet",
+      "content": "Seediq"
+    },
+    {
+      "type": "bullet",
+      "content": "Seeltersk"
+    },
+    {
+      "type": "bullet",
+      "content": "Sesotho"
+    },
+    {
+      "type": "bullet",
+      "content": "Sesotho sa Leboa"
+    },
+    {
+      "type": "bullet",
+      "content": "Setswana"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00ea\u00a0\u008d\u00ea\u00a0\u00a4\u00ea\u00a0\u009f\u00ea\u00a0\u0090\u00ea\u00a0\u00a4"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u00a1\u00d0\u00bb\u00d0\u00be\u00d0\u00b2\u00d1\u00a3\u00cc\u0081\u00d0\u00bd\u00d1\u008c\u00d1\u0081\u00d0\u00ba\u00d1\u008a / \u00e2\u00b0\u0094\u00e2\u00b0\u008e\u00e2\u00b0\u0091\u00e2\u00b0\u0082\u00e2\u00b0\u00a1\u00e2\u00b0\u0090\u00e2\u00b0\u00a0\u00e2\u00b0\u0094\u00e2\u00b0\u008d\u00e2\u00b0\u009f"
+    },
+    {
+      "type": "bullet",
+      "content": "Soomaaliga"
+    },
+    {
+      "type": "bullet",
+      "content": "Sranantongo"
+    },
+    {
+      "type": "bullet",
+      "content": "SiSwati"
+    },
+    {
+      "type": "bullet",
+      "content": "Tacl\u00e1\u00b8\u00a5it"
+    },
+    {
+      "type": "bullet",
+      "content": "Reo tahiti"
+    },
+    {
+      "type": "bullet",
+      "content": "Taqbaylit"
+    },
+    {
+      "type": "bullet",
+      "content": "Tarand\u00c3\u00adne"
+    },
+    {
+      "type": "bullet",
+      "content": "Tayal"
+    },
+    {
+      "type": "bullet",
+      "content": "Tetun"
+    },
+    {
+      "type": "bullet",
+      "content": "Tok Pisin"
+    },
+    {
+      "type": "bullet",
+      "content": "tol\u00c4\u00b1\u00c5\u009fi"
+    },
+    {
+      "type": "bullet",
+      "content": "faka Tonga"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e1\u008f\u00a3\u00e1\u008e\u00b3\u00e1\u008e\u00a9"
+    },
+    {
+      "type": "bullet",
+      "content": "T\u00c3\u00bcrkmen\u00c3\u00a7e"
+    },
+    {
+      "type": "bullet",
+      "content": "Twi"
+    },
+    {
+      "type": "bullet",
+      "content": "Tyap"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u00a2\u00d1\u008b\u00d0\u00b2\u00d0\u00b0 \u00d0\u00b4\u00d1\u008b\u00d0\u00bb"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u00a3\u00d0\u00b4\u00d0\u00bc\u00d1\u0083\u00d1\u0080\u00d1\u0082"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d8\u00a6\u00db\u0087\u00d9\u008a\u00d8\u00ba\u00db\u0087\u00d8\u00b1\u00da\u0086\u00d9\u0087"
+    },
+    {
+      "type": "bullet",
+      "content": "Veps\u00c3\u00a4n"
+    },
+    {
+      "type": "bullet",
+      "content": "v\u00c3\u00b5ro"
+    },
+    {
+      "type": "bullet",
+      "content": "West-Vlams"
+    },
+    {
+      "type": "bullet",
+      "content": "Wolof"
+    },
+    {
+      "type": "bullet",
+      "content": "isiXhosa"
+    },
+    {
+      "type": "bullet",
+      "content": "Ze\u00c3\u00aauws"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u00b0\u00d0\u00bb\u00d1\u0082\u00d0\u00b0\u00d0\u00b9 \u00d1\u0082\u00d0\u00b8\u00d0\u00bb"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00a4\u0085\u00e0\u00a4\u00b5\u00e0\u00a4\u00a7\u00e0\u00a5\u0080"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00a4\u00a1\u00e0\u00a5\u008b\u00e0\u00a4\u009f\u00e0\u00a5\u0087\u00e0\u00a4\u00b2\u00e0\u00a5\u0080"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00b2\u00a4\u00e0\u00b3\u0081\u00e0\u00b2\u00b3\u00e0\u00b3\u0081"
+    },
+    {
+      "type": "list",
+      "list_type": "ul"
+    },
+    {
+      "type": "bullet",
+      "content": "Bajau Sama"
+    },
+    {
+      "type": "bullet",
+      "content": "Bamanankan"
+    },
+    {
+      "type": "bullet",
+      "content": "Batak Toba"
+    },
+    {
+      "type": "bullet",
+      "content": "Chamoru"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e0\u00bd\u00a2\u00e0\u00be\u00ab\u00e0\u00bd\u00bc\u00e0\u00bd\u0084\u00e0\u00bc\u008b\u00e0\u00bd\u0081"
+    },
+    {
+      "type": "bullet",
+      "content": "Farefare"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00f0\u0090\u008c\u00b2\u00f0\u0090\u008c\u00bf\u00f0\u0090\u008d\u0084\u00f0\u0090\u008c\u00b9\u00f0\u0090\u008d\u0083\u00f0\u0090\u008c\u00ba"
+    },
+    {
+      "type": "bullet",
+      "content": "Igala"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e1\u0090\u0083\u00e1\u0093\u0084\u00e1\u0092\u0083\u00e1\u0091\u008e\u00e1\u0091\u0090\u00e1\u0091\u00a6 / Inuktitut"
+    },
+    {
+      "type": "bullet",
+      "content": "I\u00c3\u00b1upiak"
+    },
+    {
+      "type": "bullet",
+      "content": "isiNdebele seSewula"
+    },
+    {
+      "type": "bullet",
+      "content": "Kalaallisut"
+    },
+    {
+      "type": "bullet",
+      "content": "Mfantse"
+    },
+    {
+      "type": "bullet",
+      "content": "Obolo"
+    },
+    {
+      "type": "bullet",
+      "content": "pinayuanan"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00ce\u00a0\u00ce\u00bf\u00ce\u00bd\u00cf\u0084\u00ce\u00b9\u00ce\u00b1\u00ce\u00ba\u00ce\u00ac"
+    },
+    {
+      "type": "bullet",
+      "content": "romani \u00c4\u008dhib"
+    },
+    {
+      "type": "bullet",
+      "content": "Ikirundi"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d1\u0080\u00d1\u0083\u00d1\u0081\u00d0\u00ba\u00d0\u00b8"
+    },
+    {
+      "type": "bullet",
+      "content": "S\u00c3\u00a4ng\u00c3\u00b6"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e1\u00a5\u0096\u00e1\u00a5\u00ad\u00e1\u00a5\u00b0\u00e1\u00a5\u0096\u00e1\u00a5\u00ac\u00e1\u00a5\u00b3\u00e1\u00a5\u0091\u00e1\u00a5\u00a8\u00e1\u00a5\u0092\u00e1\u00a5\u00b0"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00e1\u0089\u00b5\u00e1\u008c\u008d\u00e1\u0088\u00ad\u00e1\u008a\u009b"
+    },
+    {
+      "type": "bullet",
+      "content": "Thu\u00c9\u0094\u00c5\u008bj\u00c3\u00a4\u00c5\u008b"
+    },
+    {
+      "type": "bullet",
+      "content": "Ts\u00c4\u0097hesen\u00c4\u0097stsestotse"
+    },
+    {
+      "type": "bullet",
+      "content": "Xitsonga"
+    },
+    {
+      "type": "bullet",
+      "content": "Tshiven\u00e1\u00b8\u0093a"
+    },
+    {
+      "type": "bullet",
+      "content": "Wayuunaiki"
+    },
+    {
+      "type": "bullet",
+      "content": "\u00d0\u00b0\u00d0\u00b4\u00d1\u008b\u00d0\u00b3\u00d0\u00b0\u00d0\u00b1\u00d0\u00b7\u00d1\u008d"
+    },
+    {
+      "type": "list",
+      "list_type": "ul"
+    },
+    {
+      "type": "bullet",
+      "content": "Google Play Store"
+    },
+    {
+      "type": "bullet",
+      "content": "Apple App Store"
+    },
+    {
+      "type": "paragraph",
+      "content": "Search WikipediaAfrikaans\u00d8\u00a7\u00d9\u0084\u00d8\u00b9\u00d8\u00b1\u00d8\u00a8\u00d9\u008a\u00d8\u00a9AsturianuAz\u00c9\u0099rbaycanca\u00d0\u0091\u00d1\u008a\u00d0\u00bb\u00d0\u00b3\u00d0\u00b0\u00d1\u0080\u00d1\u0081\u00d0\u00ba\u00d0\u00b8\u00e9\u0096\u00a9\u00e5\u008d\u0097\u00e8\u00aa\u009e / B\u00c3\u00a2n-l\u00c3\u00a2m-g\u00c3\u00ba\u00e0\u00a6\u00ac\u00e0\u00a6\u00be\u00e0\u00a6\u0082\u00e0\u00a6\u00b2\u00e0\u00a6\u00be\u00d0\u0091\u00d0\u00b5\u00d0\u00bb\u00d0\u00b0\u00d1\u0080\u00d1\u0083\u00d1\u0081\u00d0\u00ba\u00d0\u00b0\u00d1\u008fCatal\u00c3\u00c4\u008ce\u00c5\u00a1tinaCymraegDanskDeutschEesti\u00ce\u0095\u00ce\u00bb\u00ce\u00bb\u00ce\u00b7\u00ce\u00bd\u00ce\u00b9\u00ce\u00ba\u00ce\u00acEnglishEspa\u00c3\u00b1olEsperantoEuskara\u00d9\u0081\u00d8\u00a7\u00d8\u00b1\u00d8\u00b3\u00db\u008cFran\u00c3\u00a7aisGalego\u00ed\u0095\u009c\u00ea\u00b5\u00ad\u00ec\u0096\u00b4\u00d5\u0080\u00d5\u00a1\u00d5\u00b5\u00d5\u00a5\u00d6\u0080\u00d5\u00a5\u00d5\u00b6\u00e0\u00a4\u00b9\u00e0\u00a4\u00bf\u00e0\u00a4\u00a8\u00e0\u00a5\u008d\u00e0\u00a4\u00a6\u00e0\u00a5\u0080HrvatskiBahasa IndonesiaItaliano\u00d7\u00a2\u00d7\u0091\u00d7\u00a8\u00d7\u0099\u00d7\u00aa\u00e1\u0083\u00a5\u00e1\u0083\u0090\u00e1\u0083\u00a0\u00e1\u0083\u0097\u00e1\u0083\u00a3\u00e1\u0083\u009a\u00e1\u0083\u0098LadinLatinaLatvie\u00c5\u00a1uLietuvi\u00c5\u00b3Magyar\u00d0\u009c\u00d0\u00b0\u00d0\u00ba\u00d0\u00b5\u00d0\u00b4\u00d0\u00be\u00d0\u00bd\u00d1\u0081\u00d0\u00ba\u00d0\u00b8\u00d9\u0085\u00d8\u00b5\u00d8\u00b1\u00d9\u0089Bahasa MelayuBahaso Minangkabau\u00e1\u0080\u0099\u00e1\u0080\u00bc\u00e1\u0080\u0094\u00e1\u0080\u00ba\u00e1\u0080\u0099\u00e1\u0080\u00ac\u00e1\u0080\u0098\u00e1\u0080\u00ac\u00e1\u0080\u009e\u00e1\u0080\u00acNederlands\u00e6\u0097\u00a5\u00e6\u009c\u00ac\u00e8\u00aa\u009eNor"
+    },
+    {
+      "type": "paragraph",
+      "content": "Search WikipediaAfrikaans\u00d8\u00a7\u00d9\u0084\u00d8\u00b9\u00d8\u00b1\u00d8\u00a8\u00d9\u008a\u00d8\u00a9AsturianuAz\u00c9\u0099rbaycanca\u00d0\u0091\u00d1\u008a\u00d0\u00bb\u00d0\u00b3\u00d0\u00b0\u00d1\u0080\u00d1\u0081\u00d0\u00ba\u00d0\u00b8\u00e9\u0096\u00a9\u00e5\u008d\u0097\u00e8\u00aa\u009e / B\u00c3\u00a2n-l\u00c3\u00a2m-g\u00c3\u00ba\u00e0\u00a6\u00ac\u00e0\u00a6\u00be\u00e0\u00a6\u0082\u00e0\u00a6\u00b2\u00e0\u00a6\u00be\u00d0\u0091\u00d0\u00b5\u00d0\u00bb\u00d0\u00b0\u00d1\u0080\u00d1\u0083\u00d1\u0081\u00d0\u00ba\u00d0\u00b0\u00d1\u008fCatal\u00c3\u00c4\u008ce\u00c5\u00a1tinaCymraegDanskDeutschEesti\u00ce\u0095\u00ce\u00bb\u00ce\u00bb\u00ce\u00b7\u00ce\u00bd\u00ce\u00b9\u00ce\u00ba\u00ce\u00acEnglishEspa\u00c3\u00b1olEsperantoEuskara\u00d9\u0081\u00d8\u00a7\u00d8\u00b1\u00d8\u00b3\u00db\u008cFran\u00c3\u00a7aisGalego\u00ed\u0095\u009c\u00ea\u00b5\u00ad\u00ec\u0096\u00b4\u00d5\u0080\u00d5\u00a1\u00d5\u00b5\u00d5\u00a5\u00d6\u0080\u00d5\u00a5\u00d5\u00b6\u00e0\u00a4\u00b9\u00e0\u00a4\u00bf\u00e0\u00a4\u00a8\u00e0\u00a5\u008d\u00e0\u00a4\u00a6\u00e0\u00a5\u0080HrvatskiBahasa IndonesiaItaliano\u00d7\u00a2\u00d7\u0091\u00d7\u00a8\u00d7\u0099\u00d7\u00aa\u00e1\u0083\u00a5\u00e1\u0083\u0090\u00e1\u0083\u00a0\u00e1\u0083\u0097\u00e1\u0083\u00a3\u00e1\u0083\u009a\u00e1\u0083\u0098LadinLatinaLatvie\u00c5\u00a1uLietuvi\u00c5\u00b3Magyar\u00d0\u009c\u00d0\u00b0\u00d0\u00ba\u00d0\u00b5\u00d0\u00b4\u00d0\u00be\u00d0\u00bd\u00d1\u0081\u00d0\u00ba\u00d0\u00b8\u00d9\u0085\u00d8\u00b5\u00d8\u00b1\u00d9\u0089Bahasa MelayuBahaso Minangkabau\u00e1\u0080\u0099\u00e1\u0080\u00bc\u00e1\u0080\u0094\u00e1\u0080\u00ba\u00e1\u0080\u0099\u00e1\u0080\u00ac\u00e1\u0080\u0098\u00e1\u0080\u00ac\u00e1\u0080\u009e\u00e1\u0080\u00acNederlands\u00e6\u0097\u00a5\u00e6\u009c\u00ac\u00e8\u00aa\u009eNor"
+    },
+    {
+      "type": "paragraph",
+      "content": "Afrikaans\u00d8\u00a7\u00d9\u0084\u00d8\u00b9\u00d8\u00b1\u00d8\u00a8\u00d9\u008a\u00d8\u00a9AsturianuAz\u00c9\u0099rbaycanca\u00d0\u0091\u00d1\u008a\u00d0\u00bb\u00d0\u00b3\u00d0\u00b0\u00d1\u0080\u00d1\u0081\u00d0\u00ba\u00d0\u00b8\u00e9\u0096\u00a9\u00e5\u008d\u0097\u00e8\u00aa\u009e / B\u00c3\u00a2n-l\u00c3\u00a2m-g\u00c3\u00ba\u00e0\u00a6\u00ac\u00e0\u00a6\u00be\u00e0\u00a6\u0082\u00e0\u00a6\u00b2\u00e0\u00a6\u00be\u00d0\u0091\u00d0\u00b5\u00d0\u00bb\u00d0\u00b0\u00d1\u0080\u00d1\u0083\u00d1\u0081\u00d0\u00ba\u00d0\u00b0\u00d1\u008fCatal\u00c3\u00c4\u008ce\u00c5\u00a1tinaCymraegDanskDeutschEesti\u00ce\u0095\u00ce\u00bb\u00ce\u00bb\u00ce\u00b7\u00ce\u00bd\u00ce\u00b9\u00ce\u00ba\u00ce\u00acEnglishEspa\u00c3\u00b1olEsperantoEuskara\u00d9\u0081\u00d8\u00a7\u00d8\u00b1\u00d8\u00b3\u00db\u008cFran\u00c3\u00a7aisGalego\u00ed\u0095\u009c\u00ea\u00b5\u00ad\u00ec\u0096\u00b4\u00d5\u0080\u00d5\u00a1\u00d5\u00b5\u00d5\u00a5\u00d6\u0080\u00d5\u00a5\u00d5\u00b6\u00e0\u00a4\u00b9\u00e0\u00a4\u00bf\u00e0\u00a4\u00a8\u00e0\u00a5\u008d\u00e0\u00a4\u00a6\u00e0\u00a5\u0080HrvatskiBahasa IndonesiaItaliano\u00d7\u00a2\u00d7\u0091\u00d7\u00a8\u00d7\u0099\u00d7\u00aa\u00e1\u0083\u00a5\u00e1\u0083\u0090\u00e1\u0083\u00a0\u00e1\u0083\u0097\u00e1\u0083\u00a3\u00e1\u0083\u009a\u00e1\u0083\u0098LadinLatinaLatvie\u00c5\u00a1uLietuvi\u00c5\u00b3Magyar\u00d0\u009c\u00d0\u00b0\u00d0\u00ba\u00d0\u00b5\u00d0\u00b4\u00d0\u00be\u00d0\u00bd\u00d1\u0081\u00d0\u00ba\u00d0\u00b8\u00d9\u0085\u00d8\u00b5\u00d8\u00b1\u00d9\u0089Bahasa MelayuBahaso Minangkabau\u00e1\u0080\u0099\u00e1\u0080\u00bc\u00e1\u0080\u0094\u00e1\u0080\u00ba\u00e1\u0080\u0099\u00e1\u0080\u00ac\u00e1\u0080\u0098\u00e1\u0080\u00ac\u00e1\u0080\u009e\u00e1\u0080\u00acNederlands\u00e6\u0097\u00a5\u00e6\u009c\u00ac\u00e8\u00aa\u009eNorsk (bokm\u00c3\u00a5l)Nors"
+    },
+    {
+      "type": "paragraph",
+      "content": "Afrikaans\u00d8\u00a7\u00d9\u0084\u00d8\u00b9\u00d8\u00b1\u00d8\u00a8\u00d9\u008a\u00d8\u00a9AsturianuAz\u00c9\u0099rbaycanca\u00d0\u0091\u00d1\u008a\u00d0\u00bb\u00d0\u00b3\u00d0\u00b0\u00d1\u0080\u00d1\u0081\u00d0\u00ba\u00d0\u00b8\u00e9\u0096\u00a9\u00e5\u008d\u0097\u00e8\u00aa\u009e / B\u00c3\u00a2n-l\u00c3\u00a2m-g\u00c3\u00ba\u00e0\u00a6\u00ac\u00e0\u00a6\u00be\u00e0\u00a6\u0082\u00e0\u00a6\u00b2\u00e0\u00a6\u00be\u00d0\u0091\u00d0\u00b5\u00d0\u00bb\u00d0\u00b0\u00d1\u0080\u00d1\u0083\u00d1\u0081\u00d0\u00ba\u00d0\u00b0\u00d1\u008fCatal\u00c3\u00c4\u008ce\u00c5\u00a1tinaCymraegDanskDeutschEesti\u00ce\u0095\u00ce\u00bb\u00ce\u00bb\u00ce\u00b7\u00ce\u00bd\u00ce\u00b9\u00ce\u00ba\u00ce\u00acEnglishEspa\u00c3\u00b1olEsperantoEuskara\u00d9\u0081\u00d8\u00a7\u00d8\u00b1\u00d8\u00b3\u00db\u008cFran\u00c3\u00a7aisGalego\u00ed\u0095\u009c\u00ea\u00b5\u00ad\u00ec\u0096\u00b4\u00d5\u0080\u00d5\u00a1\u00d5\u00b5\u00d5\u00a5\u00d6\u0080\u00d5\u00a5\u00d5\u00b6\u00e0\u00a4\u00b9\u00e0\u00a4\u00bf\u00e0\u00a4\u00a8\u00e0\u00a5\u008d\u00e0\u00a4\u00a6\u00e0\u00a5\u0080HrvatskiBahasa IndonesiaItaliano\u00d7\u00a2\u00d7\u0091\u00d7\u00a8\u00d7\u0099\u00d7\u00aa\u00e1\u0083\u00a5\u00e1\u0083\u0090\u00e1\u0083\u00a0\u00e1\u0083\u0097\u00e1\u0083\u00a3\u00e1\u0083\u009a\u00e1\u0083\u0098LadinLatinaLatvie\u00c5\u00a1uLietuvi\u00c5\u00b3Magyar\u00d0\u009c\u00d0\u00b0\u00d0\u00ba\u00d0\u00b5\u00d0\u00b4\u00d0\u00be\u00d0\u00bd\u00d1\u0081\u00d0\u00ba\u00d0\u00b8\u00d9\u0085\u00d8\u00b5\u00d8\u00b1\u00d9\u0089Bahasa MelayuBahaso Minangkabau\u00e1\u0080\u0099\u00e1\u0080\u00bc\u00e1\u0080\u0094\u00e1\u0080\u00ba\u00e1\u0080\u0099\u00e1\u0080\u00ac\u00e1\u0080\u0098\u00e1\u0080\u00ac\u00e1\u0080\u009e\u00e1\u0080\u00acNederlands\u00e6\u0097\u00a5\u00e6\u009c\u00ac\u00e8\u00aa\u009eNorsk (bokm\u00c3\u00a5l)Nors"
+    },
+    {
+      "type": "paragraph",
+      "content": "1,000,000+articles\u00d8\u00a7\u00d9\u0084\u00d8\u00b9\u00d8\u00b1\u00d8\u00a8\u00d9\u008a\u00d8\u00a9DeutschEnglishEspa\u00c3\u00b1ol\u00d9\u0081\u00d8\u00a7\u00d8\u00b1\u00d8\u00b3\u00db\u008cFran\u00c3\u00a7aisItaliano\u00d9\u0085\u00d8\u00b5\u00d8\u00b1\u00d9\u0089Nederlands\u00e6\u0097\u00a5\u00e6\u009c\u00ac\u00e8\u00aa\u009ePolskiPortugu\u00c3\u00aasSinugboanong BinisayaSvenska\u00d0\u00a3\u00d0\u00ba\u00d1\u0080\u00d0\u00b0\u00d1\u0097\u00d0\u00bd\u00d1\u0081\u00d1\u008c\u00d0\u00ba\u00d0\u00b0Ti\u00e1\u00ba\u00bfng Vi\u00e1\u00bb\u0087tWinaray\u00e4\u00b8\u00ad\u00e6\u0096\u0087\u00d0\u00a0\u00d1\u0083\u00d1\u0081\u00d1\u0081\u00d0\u00ba\u00d0\u00b8\u00d0\u00b9100,000+articlesAfrikaansAsturianuAz\u00c9\u0099rbaycanca\u00d0\u0091\u00d1\u008a\u00d0\u00bb\u00d0\u00b3\u00d0\u00b0\u00d1\u0080\u00d1\u0081\u00d0\u00ba\u00d0\u00b8\u00e9\u0096\u00a9\u00e5\u008d\u0097\u00e8\u00aa\u009e / B\u00c3\u00a2n-l\u00c3\u00a2m-g\u00c3\u00ba\u00e0\u00a6\u00ac\u00e0\u00a6\u00be\u00e0\u00a6\u0082\u00e0\u00a6\u00b2\u00e0\u00a6\u00be\u00d0\u0091\u00d0\u00b5\u00d0\u00bb\u00d0\u00b0\u00d1\u0080\u00d1\u0083\u00d1\u0081\u00d0\u00ba\u00d0\u00b0\u00d1\u008fCatal\u00c3\u00c4\u008ce\u00c5\u00a1tinaCymraegDanskEesti\u00ce\u0095\u00ce\u00bb\u00ce\u00bb\u00ce\u00b7\u00ce\u00bd\u00ce\u00b9\u00ce\u00ba\u00ce\u00acEsperantoEuskaraGalego\u00ed\u0095\u009c\u00ea\u00b5\u00ad\u00ec\u0096\u00b4\u00d5\u0080\u00d5\u00a1\u00d5\u00b5\u00d5\u00a5\u00d6\u0080\u00d5\u00a5\u00d5\u00b6\u00e0\u00a4\u00b9\u00e0\u00a4\u00bf\u00e0\u00a4\u00a8\u00e0\u00a5\u008d\u00e0\u00a4\u00a6\u00e0\u00a5\u0080HrvatskiBahasa Indonesia\u00d7\u00a2\u00d7\u0091\u00d7\u00a8\u00d7\u0099\u00d7\u00aa\u00e1\u0083\u00a5\u00e1\u0083\u0090\u00e1\u0083\u00a0\u00e1\u0083\u0097\u00e1\u0083\u00a3\u00e1\u0083"
+    },
+    {
+      "type": "paragraph",
+      "content": "1,000,000+articles\u00d8\u00a7\u00d9\u0084\u00d8\u00b9\u00d8\u00b1\u00d8\u00a8\u00d9\u008a\u00d8\u00a9DeutschEnglishEspa\u00c3\u00b1ol\u00d9\u0081\u00d8\u00a7\u00d8\u00b1\u00d8\u00b3\u00db\u008cFran\u00c3\u00a7aisItaliano\u00d9\u0085\u00d8\u00b5\u00d8\u00b1\u00d9\u0089Nederlands\u00e6\u0097\u00a5\u00e6\u009c\u00ac\u00e8\u00aa\u009ePolskiPortugu\u00c3\u00aasSinugboanong BinisayaSvenska\u00d0\u00a3\u00d0\u00ba\u00d1\u0080\u00d0\u00b0\u00d1\u0097\u00d0\u00bd\u00d1\u0081\u00d1\u008c\u00d0\u00ba\u00d0\u00b0Ti\u00e1\u00ba\u00bfng Vi\u00e1\u00bb\u0087tWinaray\u00e4\u00b8\u00ad\u00e6\u0096\u0087\u00d0\u00a0\u00d1\u0083\u00d1\u0081\u00d1\u0081\u00d0\u00ba\u00d0\u00b8\u00d0\u00b9100,000+articlesAfrikaansAsturianuAz\u00c9\u0099rbaycanca\u00d0\u0091\u00d1\u008a\u00d0\u00bb\u00d0\u00b3\u00d0\u00b0\u00d1\u0080\u00d1\u0081\u00d0\u00ba\u00d0\u00b8\u00e9\u0096\u00a9\u00e5\u008d\u0097\u00e8\u00aa\u009e / B\u00c3\u00a2n-l\u00c3\u00a2m-g\u00c3\u00ba\u00e0\u00a6\u00ac\u00e0\u00a6\u00be\u00e0\u00a6\u0082\u00e0\u00a6\u00b2\u00e0\u00a6\u00be\u00d0\u0091\u00d0\u00b5\u00d0\u00bb\u00d0\u00b0\u00d1\u0080\u00d1\u0083\u00d1\u0081\u00d0\u00ba\u00d0\u00b0\u00d1\u008fCatal\u00c3\u00c4\u008ce\u00c5\u00a1tinaCymraegDanskEesti\u00ce\u0095\u00ce\u00bb\u00ce\u00bb\u00ce\u00b7\u00ce\u00bd\u00ce\u00b9\u00ce\u00ba\u00ce\u00acEsperantoEuskaraGalego\u00ed\u0095\u009c\u00ea\u00b5\u00ad\u00ec\u0096\u00b4\u00d5\u0080\u00d5\u00a1\u00d5\u00b5\u00d5\u00a5\u00d6\u0080\u00d5\u00a5\u00d5\u00b6\u00e0\u00a4\u00b9\u00e0\u00a4\u00bf\u00e0\u00a4\u00a8\u00e0\u00a5\u008d\u00e0\u00a4\u00a6\u00e0\u00a5\u0080HrvatskiBahasa Indonesia\u00d7\u00a2\u00d7\u0091\u00d7\u00a8\u00d7\u0099\u00d7\u00aa\u00e1\u0083\u00a5\u00e1\u0083\u0090\u00e1\u0083\u00a0\u00e1\u0083\u0097\u00e1\u0083\u00a3\u00e1\u0083"
+    },
+    {
+      "type": "paragraph",
+      "content": "AfrikaansAsturianuAz\u00c9\u0099rbaycanca\u00d0\u0091\u00d1\u008a\u00d0\u00bb\u00d0\u00b3\u00d0\u00b0\u00d1\u0080\u00d1\u0081\u00d0\u00ba\u00d0\u00b8\u00e9\u0096\u00a9\u00e5\u008d\u0097\u00e8\u00aa\u009e / B\u00c3\u00a2n-l\u00c3\u00a2m-g\u00c3\u00ba\u00e0\u00a6\u00ac\u00e0\u00a6\u00be\u00e0\u00a6\u0082\u00e0\u00a6\u00b2\u00e0\u00a6\u00be\u00d0\u0091\u00d0\u00b5\u00d0\u00bb\u00d0\u00b0\u00d1\u0080\u00d1\u0083\u00d1\u0081\u00d0\u00ba\u00d0\u00b0\u00d1\u008fCatal\u00c3\u00c4\u008ce\u00c5\u00a1tinaCymraegDanskEesti\u00ce\u0095\u00ce\u00bb\u00ce\u00bb\u00ce\u00b7\u00ce\u00bd\u00ce\u00b9\u00ce\u00ba\u00ce\u00acEsperantoEuskaraGalego\u00ed\u0095\u009c\u00ea\u00b5\u00ad\u00ec\u0096\u00b4\u00d5\u0080\u00d5\u00a1\u00d5\u00b5\u00d5\u00a5\u00d6\u0080\u00d5\u00a5\u00d5\u00b6\u00e0\u00a4\u00b9\u00e0\u00a4\u00bf\u00e0\u00a4\u00a8\u00e0\u00a5\u008d\u00e0\u00a4\u00a6\u00e0\u00a5\u0080HrvatskiBahasa Indonesia\u00d7\u00a2\u00d7\u0091\u00d7\u00a8\u00d7\u0099\u00d7\u00aa\u00e1\u0083\u00a5\u00e1\u0083\u0090\u00e1\u0083\u00a0\u00e1\u0083\u0097\u00e1\u0083\u00a3\u00e1\u0083\u009a\u00e1\u0083\u0098LadinLatinaLatvie\u00c5\u00a1uLietuvi\u00c5\u00b3Magyar\u00d0\u009c\u00d0\u00b0\u00d0\u00ba\u00d0\u00b5\u00d0\u00b4\u00d0\u00be\u00d0\u00bd\u00d1\u0081\u00d0\u00ba\u00d0\u00b8Bahasa MelayuBahaso Minangkabau\u00e1\u0080\u0099\u00e1\u0080\u00bc\u00e1\u0080\u0094\u00e1\u0080\u00ba\u00e1\u0080\u0099\u00e1\u0080\u00ac\u00e1\u0080\u0098\u00e1\u0080\u00ac\u00e1\u0080\u009e\u00e1\u0080\u00acNorskbokm\u00c3\u00a5lnynorsk\u00d0\u009d\u00d0\u00be\u00d1\u0085\u00d1\u0087\u00d0\u00b8\u00d0\u00b9\u00d0\u00bdO\u00ca\u00bbzbekcha / \u00d0\u008e\u00d0\u00b7\u00d0\u00b1\u00d0\u00b5\u00d0\u00ba\u00d1\u0087\u00d0\u00b0\u00d2\u009a\u00d0\u00b0\u00d0\u00b7\u00d0\u00b0\u00d2\u009b\u00d1\u0088\u00d0\u00b0/Qazaq\u00c5\u009fa/\u00d9\u0082\u00d8\u00a7\u00d8\u00b2\u00d8\u00a7\u00d9\u0082\u00d8\u00b4\u00d8\u00a7Rom\u00c3\u00a2n\u00c4\u0083Shq"
+    },
+    {
+      "type": "paragraph",
+      "content": "Bahsa Ac\u00c3\u00a8hAlemannisch\u00e1\u008a\u00a0\u00e1\u0088\u009b\u00e1\u0088\u00ad\u00e1\u008a\u009bAragon\u00c3\u00a9s\u00d4\u00b1\u00d6\u0080\u00d5\u00a5\u00d6\u0082\u00d5\u00b4\u00d5\u00bf\u00d5\u00a1\u00d5\u00b0\u00d5\u00a1\u00d5\u00b5\u00d5\u00a5\u00d6\u0080\u00d5\u00a7\u00d5\u00b6Bahasa HulontaloBasa BaliBahasa BanjarBasa Banyumasan\u00d0\u0091\u00d0\u00b0\u00d1\u0088\u00d2\u00a1\u00d0\u00be\u00d1\u0080\u00d1\u0082\u00d1\u0081\u00d0\u00b0\u00d0\u0091\u00d0\u00b5\u00d0\u00bb\u00d0\u00b0\u00d1\u0080\u00d1\u0083\u00d1\u0081\u00d0\u00ba\u00d0\u00b0\u00d1\u008f (\u00d1\u0082\u00d0\u00b0\u00d1\u0080\u00d0\u00b0\u00d1\u0088\u00d0\u00ba\u00d0\u00b5\u00d0\u00b2\u00d1\u0096\u00d1\u0086\u00d0\u00b0)Bikol Central\u00e0\u00a6\u00ac\u00e0\u00a6\u00bf\u00e0\u00a6\u00b7\u00e0\u00a7\u008d\u00e0\u00a6\u00a3\u00e0\u00a7\u0081\u00e0\u00a6\u00aa\u00e0\u00a7\u008d\u00e0\u00a6\u00b0\u00e0\u00a6\u00bf\u00e0\u00a6\u00af\u00e0\u00a6\u00bc\u00e0\u00a6\u00be \u00e0\u00a6\u00ae\u00e0\u00a6\u00a3\u00e0\u00a6\u00bf\u00e0\u00a6\u00aa\u00e0\u00a7\u0081\u00e0\u00a6\u00b0\u00e0\u00a7\u0080BoarischBosanskiBrezhoneg\u00d0\u00a7\u00d3\u0091\u00d0\u00b2\u00d0\u00b0\u00d1\u0088\u00d0\u00bb\u00d0\u00b0Dagbanli\u00d8\u00a7\u00d9\u0084\u00d8\u00af\u00d8\u00a7\u00d8\u00b1\u00d8\u00ac\u00d8\u00a9Din\u00c3\u00a9 BizaadEmigli\u00c3\u00a0n\u00e2\u0080\u0093Rumagn\u00c3\u00b2lFiji HindiF\u00c3\u00b8roysktFryskGaeilgeG\u00c3\u00a0idhlig\u00da\u00af\u00db\u008c\u00d9\u0084\u00da\u00a9\u00db\u008c\u00e0\u00aa\u0097\u00e0\u00ab\u0081\u00e0\u00aa\u009c\u00e0\u00aa\u00b0\u00e0\u00aa\u00be\u00e0\u00aa\u00a4\u00e0\u00ab\u0080Hak-k\u00c3\u00a2-ng\u00c3\u00ae / \u00e5\u00ae\u00a2\u00e5\u00ae\u00b6\u00e8\u00aa\u009eHausaHornjoserbsceIdoIgboIlokanoInterlinguaInterli"
+    },
+    {
+      "type": "paragraph",
+      "content": "Dzhudezmo/\u00d7\u009c\u00d7\u0090\u00d7\u0093\u00d7\u0099\u00d7\u00a0\u00d7\u0095\u00d0\u0090\u00d0\u00b4\u00d1\u008b\u00d0\u00b3\u00d1\u008d\u00d0\u00b1\u00d0\u00b7\u00d1\u008d\u00c3\u0086ngliscAnar\u00c3\u00a2\u00c5\u00a1kiel\u00c3\u00a2\u00e0\u00a4\u0085\u00e0\u00a4\u0082\u00e0\u00a4\u0097\u00e0\u00a4\u00bf\u00e0\u00a4\u0095\u00e0\u00a4\u00be\u00d0\u0090\u00d4\u00a5\u00d1\u0081\u00d1\u0088\u00d3\u0099\u00d0\u00b0arm\u00c3\u00a3neashtiArpitanatikamekw\u00dc\u0090\u00dc\u00ac\u00dc\u0098\u00dc\u00aa\u00dc\u009d\u00dc\u0090Ava\u00c3\u00b1e\u00e2\u0080\u0099\u00e1\u00ba\u00bd\u00d0\u0090\u00d0\u00b2\u00d0\u00b0\u00d1\u0080AymarBetawi\u00e0\u00a4\u00ad\u00e0\u00a5\u008b\u00e0\u00a4\u009c\u00e0\u00a4\u00aa\u00e0\u00a5\u0081\u00e0\u00a4\u00b0\u00e0\u00a5\u0080Bislama\u00e0\u00bd\u0096\u00e0\u00bd\u00bc\u00e0\u00bd\u0091\u00e0\u00bc\u008b\u00e0\u00bd\u00a1\u00e0\u00bd\u00b2\u00e0\u00bd\u0082\u00d0\u0091\u00d1\u0083\u00d1\u0080\u00d1\u008f\u00d0\u00b0\u00d0\u00b4Chavacano de ZamboangaChichewaCorsuVahcuengh / \u00e8\u00a9\u00b1\u00e5\u0083\u00aeDagaareDavvis\u00c3\u00a1megiellaDeitsch\u00de\u008b\u00de\u00a8\u00de\u0088\u00de\u00ac\u00de\u0080\u00de\u00a8\u00de\u0084\u00de\u00a6\u00de\u0090\u00de\u00b0DolnoserbskiDusun Bundu-liwan\u00d0\u00ad\u00d1\u0080\u00d0\u00b7\u00d1\u008f\u00d0\u00bd\u00d1\u008cEstreme\u00c3\u00b1uE\u00ca\u008begbeF\u00c9\u0094\u00cc\u0080ngb\u00c3\u00a8FulfuldeFurlanGaelgGagauz\u00d0\u0093\u00d3\u0080\u00d0\u00b0\u00d0\u00bb\u00d0\u00b3\u00d3\u0080\u00d0\u00b0\u00d0\u00b9Ghanaian PidginG\u00c4\u00a9k\u00c5\u00a9y\u00c5\u00a9\u00e8\u00b5\u00a3\u00e8\u00af\u00ad / \u00e8\u00b4\u009b\u00e8\u00aa\u009eGungbe\u00d0\u00a5\u00d0\u00b0\u00d0\u00bb\u00d1\u008c\u00d0\u00bc\u00d0\u00b3\u00ca\u00bb\u00c5\u008clelo "
+    },
+    {
+      "type": "paragraph",
+      "content": "Bajau SamaBamanankanBatak TobaChamoru\u00e0\u00bd\u00a2\u00e0\u00be\u00ab\u00e0\u00bd\u00bc\u00e0\u00bd\u0084\u00e0\u00bc\u008b\u00e0\u00bd\u0081Farefare\u00f0\u0090\u008c\u00b2\u00f0\u0090\u008c\u00bf\u00f0\u0090\u008d\u0084\u00f0\u0090\u008c\u00b9\u00f0\u0090\u008d\u0083\u00f0\u0090\u008c\u00baIgala\u00e1\u0090\u0083\u00e1\u0093\u0084\u00e1\u0092\u0083\u00e1\u0091\u008e\u00e1\u0091\u0090\u00e1\u0091\u00a6 / InuktitutI\u00c3\u00b1upiakisiNdebele seSewulaKalaallisutMfantseObolopinayuanan\u00ce\u00a0\u00ce\u00bf\u00ce\u00bd\u00cf\u0084\u00ce\u00b9\u00ce\u00b1\u00ce\u00ba\u00ce\u00acromani \u00c4\u008dhibIkirundi\u00d1\u0080\u00d1\u0083\u00d1\u0081\u00d0\u00ba\u00d0\u00b8S\u00c3\u00a4ng\u00c3\u00b6\u00e1\u00a5\u0096\u00e1\u00a5\u00ad\u00e1\u00a5\u00b0\u00e1\u00a5\u0096\u00e1\u00a5\u00ac\u00e1\u00a5\u00b3\u00e1\u00a5\u0091\u00e1\u00a5\u00a8\u00e1\u00a5\u0092\u00e1\u00a5\u00b0\u00e1\u0089\u00b5\u00e1\u008c\u008d\u00e1\u0088\u00ad\u00e1\u008a\u009bThu\u00c9\u0094\u00c5\u008bj\u00c3\u00a4\u00c5\u008bTs\u00c4\u0097hesen\u00c4\u0097stsestotseXitsongaTshiven\u00e1\u00b8\u0093aWayuunaiki\u00d0\u00b0\u00d0\u00b4\u00d1\u008b\u00d0\u00b3\u00d0\u00b0\u00d0\u00b1\u00d0\u00b7\u00d1\u008d"
+    },
+    {
+      "type": "paragraph",
+      "content": "Wikipedia is hosted by the Wikimedia Foundation, a non-profit organization that also hosts a range of other projects.You can support our work with a donation."
+    },
+    {
+      "type": "paragraph",
+      "content": "Download Wikipedia for Android or iOSSave your favorite articles to read offline, sync your reading lists across devices and customize your reading experience with the official Wikipedia app.Google Play StoreApple App Store"
+    },
+    {
+      "type": "paragraph",
+      "content": "Scraped at: 2025-04-05 23:16:39"
+    }
+  ],
+  "images": []
+}

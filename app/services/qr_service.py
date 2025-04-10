@@ -1,15 +1,30 @@
+"""QR code generation service for Pi Share Receiver."""
+
 import os
 import qrcode
 from typing import Tuple
-from .interfaces import IQRCodeService
 
-class QRCodeService(IQRCodeService):
+class QRCodeService:
+    """Generates QR codes for URLs."""
+    
     def __init__(self, output_path: str):
+        """Initialize with output path for QR codes.
+        
+        Args:
+            output_path: Directory to save QR codes
+        """
         self.output_path = output_path
         os.makedirs(output_path, exist_ok=True)
 
     def generate_qr(self, url: str) -> Tuple[str, str]:
-        """Generate QR code for URL and return (filepath, filename)"""
+        """Generate QR code for URL and return filepath and filename.
+        
+        Args:
+            url: The URL to encode in the QR code
+            
+        Returns:
+            Tuple of (filepath, filename)
+        """
         qr = qrcode.QRCode(
             version=1,
             error_correction=qrcode.constants.ERROR_CORRECT_L,

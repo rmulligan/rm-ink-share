@@ -1,242 +1,272 @@
+"""Document creation service for Pi Share Receiver.
+
+This service converts web content to reMarkable-compatible documents
+using drawj2d to generate native reMarkable ink files.
+"""
+
 import os
 import time
 import json
-import uuid
+import logging
+import markdown
+from bs4 import BeautifulSoup
 import subprocess
-import requests
-from datetime import datetime
-from typing import Dict, List, Optional
-import textwrap
-from PIL import Image
-from .interfaces import IDocumentService
+import tempfile
+from typing import Dict, Any, Optional, List
 
-class DocumentService(IDocumentService):
+# Configure logging
+logger = logging.getLogger(__name__)
+
+class DocumentService:
+    """Creates reMarkable documents from web content."""
+    
     def __init__(self, temp_dir: str, drawj2d_path: str):
+        """Initialize with directories and paths.
+        
+        Args:
+            temp_dir: Directory for temporary files
+            drawj2d_path: Path to drawj2d executable
+        """
         self.temp_dir = temp_dir
         self.drawj2d_path = drawj2d_path
-        self.config = {
-            'RM_WIDTH': 1872,
-            'RM_HEIGHT': 2404,
-            'RM_MARGIN': 120,
-            'RM_LINE_HEIGHT': 35,
-            'RM_HEADER_LINE_HEIGHT': 55,
-            'RM_TITLE_SIZE': 36,
-            'RM_BODY_SIZE': 18,
-            'RM_CODE_SIZE': 16
-        }
         os.makedirs(temp_dir, exist_ok=True)
+        
+        # Font configuration
+        self.heading_font = "Liberation Sans"  # Mid-century modern sans-serif font
+        self.body_font = "Liberation Sans"
+        self.code_font = "DejaVu Sans Mono"
+        
+        # Remarkable Pro page size (portrait mode)
+        self.page_width = 1872
+        self.page_height = 2404
+        self.margin = 100
 
-    def create_hcl(self, url: str, qr_path: str, content: Dict) -> Optional[str]:
-        """Create HCL script from content"""
+    def create_hcl(self, url: str, qr_path: str, content: Dict[str, Any]) -> Optional[str]:
+        """Create HCL script from web content."""
         try:
-            title = self._sanitize_text(content.get("title", "Untitled"))
-            structured_content = content.get("structured_content", [])
-            images = content.get("images", [])
+            logger.info(f"Creating HCL document for: {content.get('title', url)}")
             
-            # Download images
-            image_paths = {}
-            for img in images:
-                img_path = self._download_image(img["src"], img["id"])
-                if img_path:
-                    image_paths[img["id"]] = img_path
-            
-            # Create HCL content
-            hcl_content = self._generate_hcl_content(url, title, structured_content, qr_path, image_paths)
-            
-            # Save HCL file
-            hcl_filename = f"rm_{hash(url)}_{int(time.time())}.hcl"
+            # Generate HCL file path
+            hcl_filename = f"doc_{hash(url)}.hcl"
             hcl_path = os.path.join(self.temp_dir, hcl_filename)
             
-            with open(hcl_path, 'w') as f:
-                f.write(hcl_content)
+            with open(hcl_path, 'w', encoding='utf-8') as f:
+                # Set title position
+                y_pos = self.margin
+                
+                # Add title
+                title = content.get('title', 'Untitled Document')
+                f.write(f'text {self.margin} {y_pos} "{self._escape_hcl(title)}"\n')
+                y_pos += 60  # Extra spacing after title
+                
+                # Add URL under title
+                f.write(f'text {self.margin} {y_pos} "{self._escape_hcl(url)}"\n')
+                y_pos += 40
+                
+                # Add QR code if available
+                if os.path.exists(qr_path):
+                    f.write(f'image_file "{qr_path}" {self.margin} {y_pos} 600 600\n')
+                    y_pos += 640  # Image height + padding
+                
+                # Process content
+                plain_content = self._process_content(content)
+                
+                # Split text into paragraphs and add to HCL
+                paragraphs = plain_content.split('\n\n')
+                for para in paragraphs:
+                    if not para.strip():
+                        continue
+                    
+                    # Check if we need a new page
+                    if y_pos > (self.page_height - self.margin):
+                        y_pos = self.margin
+                    # Write the paragraph
+                    if para.startswith('#'):  # Handle headings
+                        f.write(f'text {self.margin} {y_pos} "{self._escape_hcl(para.lstrip("#").strip())}"\n')
+                        y_pos += 60  # Extra spacing after heading
+                    else:
+                        f.write(f'text {self.margin} {y_pos} "{self._escape_hcl(para)}"\n')
+                        y_pos += 40  # Standard spacing for paragraphs
+                
+                # Add timestamp at the bottom
+                timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
+                f.write(f'text {self.margin} {self.page_height - self.margin} "Generated: {timestamp}"\n')
             
+            logger.info(f"Created HCL file: {hcl_path}")
             return hcl_path
-            
         except Exception as e:
-            print(f"Error creating HCL script: {e}")
+            logger.error(f"Error creating HCL document: {e}")
+            return None
+
+    def create_pdf_hcl(self, pdf_path: str, title: str, qr_path: str = None) -> Optional[str]:
+        """Create HCL script for PDF file."""
+        try:
+            logger.info(f"Creating HCL document for PDF: {pdf_path}")
+            
+            # Generate HCL file path
+            hcl_filename = f"pdf_{hash(pdf_path)}.hcl"
+            hcl_path = os.path.join(self.temp_dir, hcl_filename)
+            
+            with open(hcl_path, 'w', encoding='utf-8') as f:
+                # Add comment
+                f.write(f'// PDF document: {os.path.basename(pdf_path)}\n\n')
+                
+                # Set initial position
+                y_pos = self.margin
+                
+                # Add title
+                f.write(f'text {self.margin} {y_pos} "{self._escape_hcl(title)}"\n')
+                y_pos += 60  # Extra spacing after title
+                
+                # Add QR code if available
+                if qr_path and os.path.exists(qr_path):
+                    f.write(f'image_file "{qr_path}" {self.margin} {y_pos} 600 600\n')
+                    y_pos += 640  # Image height + padding
+                
+                # Add PDF content reference
+                f.write(f'text {self.margin} {y_pos} "See original file: {os.path.basename(pdf_path)}"\n')
+            
+            logger.info(f"Created HCL file for PDF: {hcl_path}")
+            return hcl_path
+        except Exception as e:
+            logger.error(f"Error creating HCL document for PDF: {e}")
+            return None
+
+    def create_from_markdown(self, markdown_text: str, title: str) -> Optional[str]:
+        """Convert markdown to Remarkable document."""
+        try:
+            # Convert markdown to HTML
+            html = markdown.markdown(markdown_text)
+            # Convert HTML to plain text
+            text = self._html_to_text(html)
+            
+            # Create temporary HCL file
+            hcl_filename = f"markdown_{int(time.time())}.hcl"
+            hcl_path = os.path.join(self.temp_dir, hcl_filename)
+            
+            # Split text into paragraphs
+            paragraphs = text.split('\n\n')
+            
+            with open(hcl_path, 'w', encoding='utf-8') as f:
+                # Add comment
+                f.write('// Markdown document conversion\n\n')
+                
+                # Add title
+                y_pos = self.margin
+                f.write(f'text {self.margin} {y_pos} "{self._escape_hcl(title)}"\n')
+                y_pos += 60  # Extra spacing after title
+                
+                # Process paragraphs
+                for para in paragraphs:
+                    if not para.strip():
+                        continue
+                        
+                    # Check if we need a new page
+                    if y_pos > (self.page_height - self.margin):
+                        y_pos = self.margin  # Reset y position instead of new_page
+                    
+                    # Handle heading-like paragraphs
+                    if para.startswith('#'):
+                        f.write(f'text {self.margin} {y_pos} "{self._escape_hcl(para.lstrip("#").strip())}"\n')
+                        y_pos += 60  # Extra spacing after heading
+                    else:
+                        f.write(f'text {self.margin} {y_pos} "{self._escape_hcl(para)}"\n')
+                        y_pos += 40  # Standard spacing for paragraphs
+            
+            # Convert HCL to Remarkable document
+            rm_filename = f"markdown_{int(time.time())}.rmdoc"
+            rm_path = os.path.join(self.temp_dir, rm_filename)
+            
+            return self._convert_to_remarkable(hcl_path, rm_path)
+        except Exception as e:
+            logger.error(f"Error converting markdown to Remarkable: {e}")
             return None
 
     def create_rmdoc(self, hcl_path: str, url: str) -> Optional[str]:
-        """Convert HCL to Remarkable document"""
-        try:
-            # Create RM file directly from HCL
-            rm_filename = f"rm_{hash(url)}_{int(time.time())}.rm"
-            rm_path = os.path.join(self.temp_dir, rm_filename)
+        """Convert HCL to Remarkable document."""
+        timestamp = int(time.time())
+        rm_filename = f"rm_{hash(url)}_{timestamp}.rmdoc"
+        rm_path = os.path.join(self.temp_dir, rm_filename)
+        
+        return self._convert_to_remarkable(hcl_path, rm_path)
+
+    def _process_content(self, content: Dict[str, Any]) -> str:
+        """Process content dictionary into plain text.
+        
+        Args:
+            content: Dictionary containing either structured_content or raw content
             
-            # Convert using drawj2d with Remarkable Pro settings
-            cmd = [self.drawj2d_path, "-Trm", "-r229", "-o", rm_path, hcl_path]
-            result = subprocess.run(cmd, capture_output=True, text=True)
-            
-            if result.returncode != 0:
-                print(f"Error converting to RM format: {result.stderr}")
-                return self._create_rmdoc_package(hcl_path, url)
-            
-            # Verify file exists and has content
-            if not os.path.exists(rm_path) or os.path.getsize(rm_path) < 50:
-                print(f"Error: RM file was not created properly at {rm_path}")
-                return None
+        Returns:
+            Processed plain text with proper formatting
+        """
+        plain_content = ""
+        structured_content = content.get('structured_content', [])
+        
+        if structured_content:
+            for item in structured_content:
+                content_type = item.get('type', 'paragraph')
+                text = item.get('content', '')
                 
+                if content_type == 'heading':
+                    plain_content += f"{text}\n\n"  # No markdown-style heading
+                elif content_type == 'paragraph':
+                    plain_content += f"{text}\n\n"
+                elif content_type == 'code':
+                    plain_content += f"{text}\n\n"  # No code block markers
+        else:
+            plain_content = content.get('content', '')
+            if plain_content and '<' in plain_content and '>' in plain_content:
+                plain_content = self._html_to_text(plain_content)
+        
+        return plain_content
+
+    def _convert_to_remarkable(self, hcl_path: str, rm_path: str) -> Optional[str]:
+        """Convert HCL file to Remarkable format."""
+        if not os.path.exists(hcl_path):
+            logger.error(f"HCL file not found: {hcl_path}")
+            return None
+                
+        if not os.path.exists(self.drawj2d_path):
+            logger.error(f"drawj2d not found at {self.drawj2d_path}")
+            return None
+        
+        cmd = [self.drawj2d_path, hcl_path, "-o", rm_path, "-T", "rm"]
+        
+        logger.info(f"Running drawj2d conversion: {' '.join(cmd)}")
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        
+        if result.returncode == 0 and os.path.exists(rm_path):
+            logger.info(f"Created Remarkable document: {rm_path}")
             return rm_path
-            
-        except Exception as e:
-            print(f"Error converting to RM format: {e}")
+        else:
+            logger.error(f"drawj2d error (code {result.returncode}): {result.stderr}")
+            logger.error(f"Command attempted: {' '.join(cmd)}")
             return None
 
-    def _sanitize_text(self, text: str) -> str:
-        """Clean text for HCL script"""
+    def _escape_hcl(self, text: str) -> str:
+        """Escape special characters for HCL."""
         if not text:
             return ""
-        text = text.replace('"', '\\"')
-        text = text.replace('\\', '\\\\')
-        text = ''.join(c for c in text if c.isprintable() or c == '\n')
-        return text
+        return text.replace('\\', '\\\\').replace('"', '\\"').replace('\n', ' ')
 
-    def _generate_hcl_content(self, url: str, title: str, content: List[Dict], qr_path: str, image_paths: Dict) -> str:
-        """Generate HCL script content"""
-        hcl = [
-            f'# Remarkable document for URL: {url}',
-            f'# Generated at {time.strftime("%Y-%m-%d %H:%M:%S")}',
-            '',
-            f'puts "size {self.config["RM_WIDTH"]} {self.config["RM_HEIGHT"]}"',
-            '',
-            'puts "pen black"',
-            'puts "line_width 1"',
-            '',
-            f'puts "set_font Lines {self.config["RM_TITLE_SIZE"]}"',
-            f'puts "text {self.config["RM_MARGIN"]} {self.config["RM_MARGIN"]} \\"{title[:80]}\\""',
-            '',
-            f'puts "set_font Lines {self.config["RM_BODY_SIZE"]}"',
-            f'puts "text {self.config["RM_MARGIN"]} {self.config["RM_MARGIN"] + self.config["RM_LINE_HEIGHT"] * 2} \\"Source: {url}\\""'
-        ]
-
-        # Add QR code
-        if os.path.exists(qr_path):
-            qr_size = 350
-            qr_x = self.config["RM_WIDTH"] - self.config["RM_MARGIN"] - qr_size
-            qr_y = self.config["RM_MARGIN"]
-            hcl.append(f'puts "image {qr_x} {qr_y} {qr_size} {qr_size} \\"{qr_path}\\""')
-
-        y_pos = self.config["RM_MARGIN"] + self.config["RM_LINE_HEIGHT"] * 5
-
-        # Process content
-        for item in content:
-            y_pos = self._add_content_item(hcl, item, y_pos, image_paths)
-
-        return '\n'.join(hcl)
-
-    def _add_content_item(self, hcl: List[str], item: Dict, y_pos: int, image_paths: Dict) -> int:
-        """Add a content item to HCL script and return new y_position"""
-        item_type = item.get("type", "")
-        content = item.get("content", "")
-
-        if item_type == "paragraph":
-            hcl.append(f'puts "set_font Lines {self.config["RM_BODY_SIZE"]}"')
-            for line in textwrap.wrap(self._sanitize_text(content), width=70):
-                y_pos += self.config["RM_LINE_HEIGHT"]
-                hcl.append(f'puts "text {self.config["RM_MARGIN"]} {y_pos} \\"{line}\\""')
-            y_pos += self.config["RM_LINE_HEIGHT"] / 2
-
-        elif item_type.startswith("h"):
-            level = int(item_type[1])
-            size = self.config["RM_TITLE_SIZE"] - (level - 1) * 4
-            y_pos += self.config["RM_HEADER_LINE_HEIGHT"]
-            hcl.append(f'puts "set_font Lines {size}"')
-            hcl.append(f'puts "text {self.config["RM_MARGIN"]} {y_pos} \\"{self._sanitize_text(content)}\\""')
-            y_pos += self.config["RM_LINE_HEIGHT"]
-
-        elif item_type == "image" and item.get("image_id") in image_paths:
-            img_path = image_paths[item["image_id"]]
-            y_pos += self.config["RM_LINE_HEIGHT"]
-            width = min(500, self.config["RM_WIDTH"] - 2 * self.config["RM_MARGIN"])
-            
-            try:
-                with Image.open(img_path) as img:
-                    aspect_ratio = img.height / img.width
-                    height = int(width * aspect_ratio)
-            except Exception:
-                height = width
-
-            hcl.append(f'puts "image {self.config["RM_MARGIN"]} {y_pos} {width} {height} \\"{img_path}\\""')
-            y_pos += height + self.config["RM_LINE_HEIGHT"]
-
-        return y_pos
-
-    def _create_rmdoc_package(self, hcl_path: str, url: str) -> Optional[str]:
-        """Create a RMDOC package as fallback"""
+    def _html_to_text(self, html_content: str) -> str:
+        """Extract text content from HTML, preserving structure."""
         try:
-            # Generate a RMDOC package
-            rmdoc_filename = f"rm_{hash(url)}_{int(time.time())}.rmdoc"
-            rmdoc_path = os.path.join(self.temp_dir, rmdoc_filename)
+            soup = BeautifulSoup(html_content, 'html.parser')
             
-            document_uuid = str(uuid.uuid4())
-            page_uuid = str(uuid.uuid4())
-            timestamp = int(datetime.now().timestamp() * 1000)
+            # Remove script and style elements
+            for element in soup(["script", "style"]):
+                element.extract()
             
-            # Create temporary RM file
-            temp_rm = os.path.join(self.temp_dir, f"temp_{int(time.time())}.rm")
-            result = subprocess.run(
-                [self.drawj2d_path, "-Trm", "-r229", "-o", temp_rm, hcl_path],
-                capture_output=True,
-                text=True
-            )
+            # Get text
+            text = soup.get_text()
             
-            if result.returncode != 0 or not os.path.exists(temp_rm):
-                return None
-
-            from zipfile import ZipFile
-            with ZipFile(rmdoc_path, 'w') as output_zip:
-                # Add metadata
-                output_zip.writestr(f"{document_uuid}.metadata", json.dumps({
-                    "visibleName": f"URL Document {time.strftime('%Y-%m-%d')}",
-                    "type": "DocumentType",
-                    "pages": [{"id": page_uuid}],
-                    "lastModified": str(timestamp),
-                    "lastOpened": str(timestamp),
-                    "lastOpenedPage": 0,
-                    "pageCount": 1,
-                }))
-
-                # Add content file
-                output_zip.writestr(f"{document_uuid}.content", json.dumps({
-                    "extraMetadata": {},
-                    "fileType": "notebook",
-                    "pageCount": 1,
-                    "pages": [{"id": page_uuid}]
-                }))
-
-                # Add RM file
-                output_zip.write(temp_rm, f'{document_uuid}/{page_uuid}.rm')
-
-            # Cleanup
-            if os.path.exists(temp_rm):
-                os.unlink(temp_rm)
-
-            return rmdoc_path
-
+            # Break into lines and remove leading/trailing space
+            lines = (line.strip() for line in text.splitlines())
+            # Break multi-headlines into a line each
+            chunks = (phrase.strip() for line in lines for phrase in line.split("  "))
+            # Remove blank lines and join with double newlines for paragraphs
+            return '\n\n'.join(chunk for chunk in chunks if chunk)
         except Exception as e:
-            print(f"Error creating RMDOC package: {e}")
-            return None
-
-    def _download_image(self, url: str, img_id: str) -> Optional[str]:
-        """Download an image and return its path"""
-        try:
-            response = requests.get(url, timeout=30)
-            response.raise_for_status()
-            
-            content_type = response.headers.get('content-type', '')
-            ext = 'jpg'
-            if 'png' in content_type:
-                ext = 'png'
-            elif 'gif' in content_type:
-                ext = 'gif'
-            elif 'svg' in content_type:
-                ext = 'svg'
-            
-            image_path = os.path.join(self.temp_dir, f"{img_id}.{ext}")
-            with open(image_path, 'wb') as f:
-                f.write(response.content)
-            
-            return image_path
-        except Exception as e:
-            print(f"Error downloading image {url}: {e}")
-            return None
+            logger.error(f"Error converting HTML to text: {e}")
+            return html_content
