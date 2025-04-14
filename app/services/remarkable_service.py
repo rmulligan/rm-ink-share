@@ -1,3 +1,4 @@
+
 import os
 import subprocess
 import logging
@@ -143,8 +144,7 @@ class RemarkableService(IRemarkableService):
                             logger.error(f"Exception during renaming document: {rename_error}")
                     else:
                         logger.error("Document ID not found in upload output; cannot rename document.")
-                            logger.error(f"Error renaming document: {rename_error}")
-                    
+                        
                     # Clean up temporary file if we created one
                     if using_temp_file and os.path.exists(safe_path):
                         os.unlink(safe_path)
@@ -202,7 +202,7 @@ class RemarkableService(IRemarkableService):
                             fallback_error = fallback_result.stderr if fallback_result.stderr else f"Fallback command failed with code {fallback_result.returncode}"
                             logger.error(f"Fallback upload also failed: {fallback_error}")
                             return False, f"Upload error: Both primary and fallback methods failed"
-                    
+                        
                     except Exception as fallback_error:
                         logger.error(f"Error in fallback upload: {fallback_error}")
                         # Clean up any remaining temporary files
@@ -224,7 +224,7 @@ class RemarkableService(IRemarkableService):
                 os.unlink(safe_path)
                 logger.info(f"Removed temporary file after exception: {safe_path}")
             return False, f"Upload preparation error: {str(e)}"
-
+    
     def _sanitize_filename(self, filename: str) -> str:
         """Sanitize filename for Remarkable"""
         # Remove or replace invalid characters
