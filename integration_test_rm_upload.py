@@ -5,6 +5,7 @@ import sys
 import tempfile
 import logging
 from app.services.remarkable_service import RemarkableService
+from app.services.document_service import DocumentService
 
 logging.basicConfig(level=logging.INFO)
 
@@ -29,7 +30,29 @@ def main():
     print(f"Message: {message}")
     print("Please check your rmcloud account for the new notebook if upload was successful.")
     
-    # If ACTUAL_UPLOAD env variable is set (e.g., to "1"), retain the file for inspection; otherwise, delete it.
+    # Conversion Test: Validate the output file format from conversion process
+    temp_dir = tempfile.gettempdir()
+    ds = DocumentService(temp_dir, "/usr/local/bin/drawj2d")
+    dummy_hcl_path = os.path.join(temp_dir, "dummy.hcl")
+    rm_output_path = os.path.join(temp_dir, "dummy_output.rmdoc")
+    with open(dummy_hcl_path, "w", encoding="utf-8") as f:
+         f.write('puts "size 1872 2404"\n')
+         f.write('puts "font \\"Lines\\""\n')
+         f.write('puts "pen black"\n')
+         f.write('puts "text 100 100 \\"Dummy Title\\""\n')
+    conv_result = ds._convert_to_remarkable(dummy_hcl_path, rm_output_path)
+    if conv_result is None or not os.path.exists(rm_output_path):
+         print("Conversion Test Failed: Output file not created.")
+         sys.exit(1)
+    else:
+         with open(rm_output_path, "rb") as f:
+              conv_preview = f.read(100)
+         print("Conversion Test Result:")
+         print(f"Output file: {rm_output_path}, size: {os.path.getsize(rm_output_path)} bytes")
+         print(f"Preview (100 bytes): {conv_preview}")
+         os.remove(dummy_hcl_path)
+         os.remove(rm_output_path)
+    
     if os.getenv("ACTUAL_UPLOAD", "0") != "1":
         os.remove(temp_file_path)
     

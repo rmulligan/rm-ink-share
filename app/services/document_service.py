@@ -29,7 +29,6 @@ def create_hcl(self, url: str, qr_path: str, content: Dict[str, Any]) -> Optiona
             f.write(f'puts "size {self.page_width} {self.page_height}"\n')
             f.write('puts "font \\"Lines\\""\n')
             f.write('puts "pen black"\n')
-            
             # Log the HCL content being written
             logger.info(f"Writing HCL content to {hcl_path}")
             
@@ -73,7 +72,9 @@ def create_hcl(self, url: str, qr_path: str, content: Dict[str, Any]) -> Optiona
             # Add timestamp at the bottom
             timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
             f.write(f'puts "text {self.margin} {self.page_height - self.margin} \\"Generated: {timestamp}\\""\n')
-        
+        with open(hcl_path, 'r', encoding='utf-8') as f:
+            hcl_preview = f.read(200)
+        logger.info(f"HCL file preview (200 chars): {hcl_preview}")
         logger.info(f"Created HCL file: {hcl_path}")
         return hcl_path
     except Exception as e:
@@ -382,8 +383,14 @@ class DocumentService:
                     logger.error(f"Output file missing: {rm_path}, even though command reported success")
                     raise FileNotFoundError(f"Expected output file not created: {rm_path}")
                 else:
-                    logger.info(f"Output file successfully created: {rm_path} ({os.path.getsize(rm_path)} bytes)")
-                
+                    file_size = os.path.getsize(rm_path)
+                    logger.info(f"Output file successfully created: {rm_path} ({file_size} bytes)")
+                    if file_size < 1024:
+                        logger.error(f"Output file size is suspiciously small: {file_size} bytes. Possible conversion error.")
+                    with open(rm_path, 'rb') as rf:
+                        preview = rf.read(100)
+                    logger.info(f"Output file preview (100 bytes): {preview}")
+
                 return rm_path
             
             # Use retry operation for running the conversion
