@@ -1,3 +1,4 @@
+
 # Pi Share Receiver
 
 Receives URLs shared from iOS Shortcuts via Tailscale, generates QR codes, intelligently parses web content, and uploads richly formatted editable documents optimized for Remarkable Pro tablets.
@@ -75,10 +76,10 @@ The pi_share_receiver can be configured using environment variables or the `conf
 | PI_SHARE_RMAPI | /usr/local/bin/rmapi | Path to rmapi executable |
 | PI_SHARE_DRAWJ2D | /usr/local/bin/drawj2d | Path to drawj2d executable |
 | PI_SHARE_RM_FOLDER | / | Remarkable cloud folder for uploads |
-| PI_SHARE_MAX_RETRIES | 3 | Maximum retry attempts for network operations |
-| PI_SHARE_RETRY_DELAY | 2 | Base delay between retries (seconds) |
 | PI_SHARE_LOG_LEVEL | INFO | Logging level (DEBUG, INFO, WARNING, ERROR) |
 | PI_SHARE_LOG_FILE | pi_share_receiver.log | Path to log file |
+| PI_SHARE_MAX_RETRIES | 3 | Maximum retry attempts for network operations |
+| PI_SHARE_RETRY_DELAY | 2 | Base delay between retries (seconds) |
 
 ## Usage
 
