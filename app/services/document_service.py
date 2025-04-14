@@ -370,29 +370,13 @@ class DocumentService:
             def run_conversion(cmd_args):
                 logger.info(f"Running drawj2d conversion: {' '.join(cmd_args)}")
                 
-                # Try using os.system to run the command directly
-                cmd_str = ' '.join(cmd_args)
-                logger.info(f"Running with os.system: {cmd_str}")
+                # Running the conversion using subprocess.run for better error handling
+                result = subprocess.run(cmd_args, capture_output=True, text=True)
+                logger.info(f"Command stdout: {result.stdout}")
+                logger.info(f"Command stderr: {result.stderr}")
                 
-                # Create a temporary file to capture the output
-                output_file = os.path.join(self.temp_dir, "drawj2d_output.txt")
-                
-                # Run the command and redirect output to a file
-                exit_code = os.system(f"{cmd_str} > {output_file} 2>&1")
-                
-                # Read the output
-                if os.path.exists(output_file):
-                    with open(output_file, 'r') as f:
-                        output = f.read()
-                    logger.info(f"Command output: {output}")
-                else:
-                    output = "No output file created"
-                    logger.warning("No output file was created")
-                
-                logger.info(f"Command exit code: {exit_code}")
-                
-                if exit_code != 0:
-                    raise RuntimeError(f"drawj2d conversion failed: Exit code {exit_code}, Output: {output}")
+                if result.returncode != 0:
+                    raise RuntimeError(f"drawj2d conversion failed: Exit code {result.returncode}, stderr: {result.stderr}")
                 
                 if not os.path.exists(rm_path):
                     logger.error(f"Output file missing: {rm_path}, even though command reported success")

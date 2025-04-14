@@ -4,18 +4,20 @@ import logging
 import shutil
 import uuid
 import tempfile
-import time
-from typing import Optional, Tuple, Any, Callable
+from typing import Optional, Tuple, Any
 from .interfaces import IRemarkableService
 
-# Import config if available, otherwise use defaults
+# Import utility functions for error handling
 try:
-    from config import CONFIG
-    MAX_RETRIES = CONFIG.get('MAX_RETRIES', 3)
-    RETRY_DELAY = CONFIG.get('RETRY_DELAY', 2)
+    from ..utils import retry_operation, format_error
 except ImportError:
-    MAX_RETRIES = 3
-    RETRY_DELAY = 2
+    # If we can't import the utilities, define minimal versions
+    # (This should never happen in production)
+    def retry_operation(operation, *args, **kwargs):
+        return operation(*args, **kwargs)
+    
+    def format_error(error_type, message, details=None):
+        return f"{error_type}: {message}"
 
 # Set up logger
 logger = logging.getLogger(__name__)
@@ -24,87 +26,29 @@ class RemarkableService(IRemarkableService):
     def __init__(self, rmapi_path: str, upload_folder: str = "/"):
         self.rmapi_path = rmapi_path
         self.upload_folder = upload_folder
-        self.max_retries = MAX_RETRIES
-        self.retry_delay = RETRY_DELAY
-        
-    def _retry_operation(self, operation: Callable[..., Any], *args, **kwargs) -> Any:
-        """Retry an operation with exponential backoff.
-        
-        Args:
-            operation: Function to retry
-            args: Arguments to pass to the function
-            kwargs: Keyword arguments to pass to the function
-            
-        Returns:
-            The result of the operation if successful
-        
-        Raises:
-            Exception: If the operation fails after all retries
-        """
-        retries = 0
-        last_error = None
-        
-        while retries <= self.max_retries:
-            try:
-                if retries > 0:
-                    logger.info(f"Retry attempt {retries}/{self.max_retries}...")
-                return operation(*args, **kwargs)
-            except Exception as e:
-                last_error = e
-                retries += 1
-                if retries <= self.max_retries:
-                    sleep_time = self.retry_delay * (2 ** (retries - 1))  # Exponential backoff
-                    logger.warning(f"Operation failed: {str(e)}. Retrying in {sleep_time} seconds...")
-                    time.sleep(sleep_time)
-                else:
-                    logger.error(f"Operation failed after {self.max_retries} retries: {str(e)}")
-                    raise last_error
+    # First implementation removed - keeping only the version with retry functionality
     def upload(self, doc_path: str, title: str) -> Tuple[bool, str]:
         """Upload document to Remarkable Cloud"""
         try:
             # Validate inputs
             if not os.path.exists(doc_path):
-                logger.error(f"Document not found: {doc_path}")
-                return False, f"Document not found: {doc_path}"
+                error_msg = format_error("input", "Document not found", doc_path)
+                logger.error(error_msg)
+                return False, error_msg
             
             if not os.path.exists(self.rmapi_path):
-                logger.error(f"rmapi not found at: {self.rmapi_path}")
-                return False, f"rmapi not found at: {self.rmapi_path}"
+                error_msg = format_error("config", "rmapi executable not found", self.rmapi_path)
+                logger.error(error_msg)
+                return False, error_msg
 
-            # Use the new upload method with -n flag
-            sanitized_title = self._sanitize_filename(title)
-            success, message = self._upload_with_n_flag(doc_path, sanitized_title)
-            
-            if success:
-                logger.info(f"Document uploaded successfully: {title}")
-                return True, f"Document uploaded to Remarkable: {title}"
-            else:
-                logger.error(f"Upload failed: {message}")
-                return False, message
-                
-        except Exception as e:
-            logger.exception(f"Unexpected error in upload: {str(e)}")
-            return False, f"Upload error: {str(e)}"
-            
-    def upload(self, doc_path: str, title: str) -> Tuple[bool, str]:
-        """Upload document to Remarkable Cloud"""
-        try:
-            # Validate inputs
-            if not os.path.exists(doc_path):
-                logger.error(f"Document not found: {doc_path}")
-                return False, f"Document not found: {doc_path}"
-            
-            if not os.path.exists(self.rmapi_path):
-                logger.error(f"rmapi not found at: {self.rmapi_path}")
-                return False, f"rmapi not found at: {self.rmapi_path}"
-
-            # Use the upload method with retries
+            # Use the upload method with retries from the central utility
             sanitized_title = self._sanitize_filename(title)
             try:
-                success, message = self._retry_operation(
+                success, message = retry_operation(
                     self._upload_with_n_flag,
                     doc_path,
-                    sanitized_title
+                    sanitized_title,
+                    operation_name="Remarkable upload"
                 )
                 
                 if success:
@@ -114,12 +58,14 @@ class RemarkableService(IRemarkableService):
                     logger.error(f"Upload failed: {message}")
                     return False, message
             except Exception as e:
-                logger.error(f"Upload failed after retries: {str(e)}")
-                return False, f"Upload failed after multiple attempts: {str(e)}"
+                error_msg = format_error("upload", "Failed after multiple attempts", e)
+                logger.error(error_msg)
+                return False, error_msg
                 
         except Exception as e:
-            logger.exception(f"Unexpected error in upload: {str(e)}")
-            return False, f"Upload error: {str(e)}"
+            error_msg = format_error("system", "Unexpected error in upload process", e)
+            logger.exception(error_msg)
+            return False, error_msg
             
     def _upload_with_n_flag(self, doc_path: str, title: str) -> Tuple[bool, str]:
         """Upload document to Remarkable Cloud with custom title
@@ -173,18 +119,14 @@ class RemarkableService(IRemarkableService):
                     # Extract the document ID from the upload output
                     doc_id = None
                     if result.stdout:
-                        # Try to extract the ID from output like "document uploaded successfully with ID: abcdef12345"
                         for line in result.stdout.splitlines():
                             if "ID" in line:
                                 parts = line.split("ID:")
                                 if len(parts) > 1:
                                     doc_id = parts[1].strip()
                                     break
-                    
-                    # If we found the document ID, try to rename it
                     if doc_id:
                         logger.info(f"Document uploaded with ID: {doc_id}, now renaming to: {title}")
-                        # Use rmapi mv command to rename the document
                         mv_cmd = [self.rmapi_path, "mv", doc_id, title]
                         try:
                             mv_result = subprocess.run(
@@ -196,8 +138,11 @@ class RemarkableService(IRemarkableService):
                             if mv_result.returncode == 0:
                                 logger.info(f"Document successfully renamed to: {title}")
                             else:
-                                logger.warning(f"Failed to rename document: {mv_result.stderr}")
+                                logger.error(f"Failed to rename document. Return code: {mv_result.returncode}. Stderr: {mv_result.stderr}")
                         except Exception as rename_error:
+                            logger.error(f"Exception during renaming document: {rename_error}")
+                    else:
+                        logger.error("Document ID not found in upload output; cannot rename document.")
                             logger.error(f"Error renaming document: {rename_error}")
                     
                     # Clean up temporary file if we created one
@@ -206,8 +151,9 @@ class RemarkableService(IRemarkableService):
                         logger.info(f"Removed temporary file: {safe_path}")
                     return True, f"Document uploaded to Remarkable: {title}"
                 else:
-                    error_msg = result.stderr if result.stderr else f"Command failed with code {result.returncode}"
-                    logger.error(f"Upload failed: {error_msg}")
+                    error_details = result.stderr if result.stderr else f"Command failed with code {result.returncode}"
+                    error_msg = format_error("upload", "Failed to upload document", error_details)
+                    logger.error(error_msg)
                     
                     # Try fallback method if the command failed
                     logger.info("Attempting fallback upload")

@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 """
 Unit tests for the DocumentService class.
@@ -93,6 +94,27 @@ class TestDocumentService(unittest.TestCase):
             args = mock_run.call_args[0][0]
             self.assertEqual(args[0], self.drawj2d_path)
             self.assertEqual(args[1], hcl_path)
+            self.assertEqual(args[4], "rm")
+            
+    def test_successful_conversion_and_upload(self):
+        """Test successful conversion and upload simulation using mocks."""
+        hcl_path = os.path.join(self.temp_dir, "test_success.hcl")
+        rm_path = os.path.join(self.temp_dir, "output.rm")
+        with open(hcl_path, "w") as f:
+            f.write("dummy hcl content")
+        successful_result = MagicMock()
+        successful_result.returncode = 0
+        successful_result.stdout = "Conversion successful"
+        successful_result.stderr = ""
+        original_exists = os.path.exists
+        def fake_exists(path):
+            if path == self.drawj2d_path or path == hcl_path or path == rm_path:
+                return True
+            return original_exists(path)
+        with patch('subprocess.run', return_value=successful_result) as mock_run, patch('os.path.exists', side_effect=fake_exists):
+            result = self.service.create_rmdoc(hcl_path, rm_path)
+            self.assertEqual(result, rm_path)
+            self.assertTrue(mock_run.called)
             self.assertEqual(args[4], "rm")  # Check that format is set to rm
             
             # The important part: verify this code is using the document dimensions that are correct
@@ -101,3 +123,4 @@ class TestDocumentService(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
