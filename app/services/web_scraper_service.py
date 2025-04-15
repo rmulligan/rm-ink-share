@@ -9,8 +9,18 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 from typing import Dict, Any, List
 
+# Import utility functions for error handling
+try:
+    from ..utils import retry_operation, format_error
+except ImportError:
+    # If we can't import the utilities, define minimal versions
+    def retry_operation(operation, *args, **kwargs):
+        return operation(*args, **kwargs)
+    
+    def format_error(error_type, message, details=None):
+        return f"{error_type}: {message}"
+
 # Configure logging
-logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class WebScraperService:
@@ -69,41 +79,69 @@ class WebScraperService:
             logger.info(message)
             
             try:
-                # Run the scraper script
-                result = subprocess.run(
-                    ["python3", script_path, url, content_path],
-                    capture_output=True,
-                    text=True,
-                    check=False  # Don't raise an exception on non-zero exit
-                )
+                # Define the scraping function that will be retried if it fails
+                def run_scraper(scraper_name, script_path, url, output_path):
+                    result = subprocess.run(
+                        ["python3", script_path, url, output_path],
+                        capture_output=True,
+                        text=True,
+                        check=False
+                    )
+                    
+                    if result.returncode != 0:
+                        error_msg = result.stderr if result.stderr else f"Exit code: {result.returncode}"
+                        raise RuntimeError(f"Scraper failed: {error_msg}")
+                    
+                    return result
+                
+                # Use retry operation for running the scraper
+                try:
+                    result = retry_operation(
+                        run_scraper,
+                        scraper_name,
+                        script_path,
+                        url,
+                        content_path,
+                        operation_name=f"Scraper ({scraper_name})",
+                        max_retries=1  # Only retry once per scraper since we have multiple scrapers
+                    )
+                except Exception as retry_error:
+                    logger.warning(format_error("scraper", f"{scraper_name} failed after retry", retry_error))
+                    continue  # Try the next scraper
                 
                 # Check if content was generated successfully
-                if result.returncode == 0 and os.path.exists(content_path):
-                    with open(content_path, 'r', encoding='utf-8') as f:
-                        content = json.load(f)
-                    
-                    # Update the title if our extracted title is better
-                    if extracted_title and (not content.get('title') or content.get('title') == "Untitled" or len(extracted_title) > len(content.get('title', ''))):
-                        logger.info(f"Using directly extracted title: {extracted_title}")
-                        content['title'] = extracted_title
-                    
-                    # Validate the content structure
-                    content = self._validate_and_fix_content(content, url)
-                    
-                    # Save the updated content back to the file
-                    with open(content_path, 'w', encoding='utf-8') as f:
-                        json.dump(content, f, indent=2)
-                    
-                    logger.info(f"Successfully scraped with {scraper_name}")
-                    return content
+                if os.path.exists(content_path):
+                    try:
+                        with open(content_path, 'r', encoding='utf-8') as f:
+                            content = json.load(f)
+                        
+                        # Update the title if our extracted title is better
+                        if extracted_title and (not content.get('title') or content.get('title') == "Untitled" or len(extracted_title) > len(content.get('title', ''))):
+                            logger.info(f"Using directly extracted title: {extracted_title}")
+                            content['title'] = extracted_title
+                        
+                        # Validate the content structure
+                        content = self._validate_and_fix_content(content, url)
+                        
+                        # Save the updated content back to the file
+                        with open(content_path, 'w', encoding='utf-8') as f:
+                            json.dump(content, f, indent=2)
+                        
+                        logger.info(f"Successfully scraped with {scraper_name}")
+                        return content
+                    except json.JSONDecodeError as json_error:
+                        logger.warning(format_error("parser", f"Invalid JSON from {scraper_name}", json_error))
                 else:
-                    logger.warning(f"Failed to scrape with {scraper_name}: {result.stderr}")
+                    logger.warning(format_error("scraper", f"{scraper_name} did not generate output file", content_path))
             except Exception as e:
-                logger.warning(f"Error using {scraper_name} scraper: {str(e)}")
+                logger.warning(format_error("scraper", f"Error using {scraper_name}", e))
         
         # If all scrapers fail, return a basic error content with the best title we have
-        logger.error("All scrapers failed to extract content")
+        logger.error(format_error("scraping", "All scrapers failed to extract content", url))
         title = extracted_title or f"Failed to Extract: {url}"
+        
+        # Still return a valid content structure that can be processed by DocumentService
+        # This ensures the end-to-end flow continues even if scraping fails
         return {
             "title": title,
             "structured_content": [{
@@ -111,7 +149,10 @@ class WebScraperService:
                 "content": f"Could not extract content from {url}. All scraping methods failed."
             }, {
                 "type": "paragraph",
-                "content": "You can try visiting this page directly on your device."
+                "content": "The URL has been saved as a QR code on your Remarkable device so you can access it directly."
+            }, {
+                "type": "paragraph", 
+                "content": f"URL: {url}"
             }],
             "images": []
         }
@@ -126,13 +167,24 @@ class WebScraperService:
             Extracted title or empty string if failed
         """
         try:
-            # Try to get a clean title directly
-            headers = {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-            }
+            # Define the fetch operation as a separate function for retry
+            def fetch_url(url_to_fetch):
+                headers = {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+                }
+                return requests.get(url_to_fetch, headers=headers, timeout=10)
             
-            response = requests.get(url, headers=headers, timeout=10)
-            soup = BeautifulSoup(response.text, 'html.parser')
+            # Use retry operation for fetching the URL
+            try:
+                response = retry_operation(
+                    fetch_url, 
+                    url, 
+                    operation_name="URL title extraction"
+                )
+                soup = BeautifulSoup(response.text, 'html.parser')
+            except Exception as e:
+                logger.warning(format_error("network", "Failed to fetch page for title extraction", e))
+                return ""
             
             # Try to get title from various elements
             title = None

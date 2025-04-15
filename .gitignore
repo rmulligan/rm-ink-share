@@ -1,3 +1,7 @@
 venv
 .aider*
 .vscode/claudesync.json
+_pycache_
+temp/*
+js/node_modules
+.plandex*

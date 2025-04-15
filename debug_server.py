@@ -24,7 +24,7 @@ def debug_create_rm(hcl_path):
     
     # Convert HCL to RM format with Lines v6
     print(f"\n===== Testing drawj2d direct command with Lines v6 =====")
-    direct_cmd = f"{DRAWJ2D_PATH} -Trm -r229 -rmv6 -o {rm_path} {hcl_path}"
+    direct_cmd = f"{DRAWJ2D_PATH} -Trm -rmv6 -o {rm_path} {hcl_path}"
     print(f"Running: {direct_cmd}")
     os.system(direct_cmd)
     
@@ -49,7 +49,7 @@ def debug_create_rm(hcl_path):
         
     print("\n===== Testing subprocess.run =====")
     # Try with subprocess
-    cmd = [DRAWJ2D_PATH, "-Trm", "-r229", "-rmv6", "-o", rm_path, hcl_path]
+    cmd = [DRAWJ2D_PATH, "-Trm", "-rmv6", "-o", rm_path, hcl_path]
     print(f"Running subprocess: {' '.join(cmd)}")
     
     try:

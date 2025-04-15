@@ -10,5 +10,6 @@
     "githubPullRequests.experimental.chat": true,
     "githubPullRequests.experimental.useQuickChat": true,
     "githubPullRequests.experimental.notificationsView": true,
-    "github.copilot.chat.editor.temporalContext.enabled": true
+    "github.copilot.chat.editor.temporalContext.enabled": true,
+    "python.analysis.autoImportCompletions": true
 }
