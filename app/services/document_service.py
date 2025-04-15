@@ -1,3 +1,4 @@
+
 """Document creation service for Pi Share Receiver.
 
 This service converts web content to reMarkable-compatible documents
@@ -10,6 +11,7 @@ import json
 import logging
 import markdown
 from bs4 import BeautifulSoup
+from typing import Dict, Any, Optional  # Added import statement
 
 def create_hcl(self, url: str, qr_path: str, content: Dict[str, Any]) -> Optional[str]:
     """Create HCL script from web content."""
@@ -79,8 +81,26 @@ def create_hcl(self, url: str, qr_path: str, content: Dict[str, Any]) -> Optiona
         return hcl_path
     except Exception as e:
         logger.error(f"Error creating HCL document: {e}")
+def _convert_to_remarkable(self, hcl_path, rm_path):
+    command = f'drawj2d -Trm -o "{rm_path}" "{hcl_path}"'
+    logger.info(f"Executing conversion command: {command}")
+    
+    result = os.system(command)
+    if result != 0:
+        logger.error(f"Conversion command failed with exit code: {result}")
         return None
-
+    
+    if not os.path.exists(rm_path):
+        logger.error(f"Output file missing: {rm_path}, even though command reported success")
+        raise FileNotFoundError(f"Expected output file not created: {rm_path}")
+    else:
+        file_size = os.path.getsize(rm_path)
+        logger.info(f"Output file successfully created: {rm_path} ({file_size} bytes)")
+        if file_size < 1024:
+            logger.error(f"Output file size is suspiciously small: {file_size} bytes. Possible conversion error.")
+        with open(rm_path, 'rb') as rf:
+            preview = rf.read(100)
+        logger.info(f"Output file preview (100 bytes): {preview}")
 import subprocess
 import tempfile
 from typing import Dict, Any, Optional, List

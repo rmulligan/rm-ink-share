@@ -1,0 +1,266 @@
+
+2025-04-14 14:39:09,054 - services.web_scraper_service - INFO - Scraping URL: https://en.wikipedia.org/wiki/ReMarkable
+2025-04-14 14:39:09,054 - services.web_scraper_service - WARNING - network: Failed to fetch page for title extraction
+2025-04-14 14:39:09,055 - services.document_service - INFO - Creating HCL document for: Failed to Extract: https://en.wikipedia.org/wiki/ReMarkable
+2025-04-14 14:39:09,055 - services.document_service - INFO - Created HCL file: /home/ryan/pi_share_receiver/temp/doc_2342730550644405977.hcl
+2025-04-14 14:39:09,056 - services.document_service - ERROR - conversion: Failed to convert document to Remarkable format
+2025-04-09 21:37:28,056 - services.web_scraper_service - INFO - Using Playwright for JavaScript-enabled scraping
+2025-04-09 21:37:28,056 - services.web_scraper_service - WARNING - scraper: playwright failed after retry
+2025-04-09 21:37:28,056 - services.web_scraper_service - INFO - Using simple requests + BeautifulSoup scraping
+2025-04-09 21:37:28,056 - services.web_scraper_service - WARNING - scraper: simple failed after retry
+2025-04-09 21:37:28,056 - services.web_scraper_service - INFO - Using Selenium browser-based scraping
+2025-04-09 21:37:28,056 - services.web_scraper_service - WARNING - scraper: browser failed after retry
+2025-04-09 21:37:28,056 - services.web_scraper_service - INFO - Using requests-html scraping
+2025-04-09 21:37:28,056 - services.web_scraper_service - WARNING - scraper: requests_html failed after retry
+2025-04-09 21:37:28,056 - services.web_scraper_service - ERROR - scraping: All scrapers failed to extract content
+2025-04-09 21:37:28,056 - services.document_service - INFO - Creating HCL document for: Failed to Extract: https://en.wikipedia.org/wiki/ReMarkable
+2025-04-09 21:37:28,057 - services.document_service - INFO - Created HCL file: /home/ryan/pi_share_receiver/temp/doc_-1020184792803092667.hcl
+2025-04-09 21:37:28,057 - services.document_service - ERROR - conversion: Failed to convert document to Remarkable format
+2025-04-09 21:46:08,605 - root - INFO - Server started at http://0.0.0.0:9999
+2025-04-09 21:46:27,483 - root - INFO - Processing URL: https://en.wikipedia.org/wiki/ReMarkable
+2025-04-09 21:46:27,508 - root - INFO - Generated QR code: qr_-9186062974132972169.png
+2025-04-09 21:46:27,745 - services.web_scraper_service - INFO - Scraping URL: https://en.wikipedia.org/wiki/ReMarkable
+2025-04-09 21:46:27,746 - services.web_scraper_service - WARNING - network: Failed to fetch page for title extraction
+2025-04-09 21:46:27,746 - services.web_scraper_service - INFO - Using Playwright for JavaScript-enabled scraping
+2025-04-09 21:46:27,746 - services.web_scraper_service - WARNING - scraper: playwright failed after retry
+2025-04-09 21:46:27,746 - services.web_scraper_service - INFO - Using simple requests + BeautifulSoup scraping
+2025-04-09 21:46:27,746 - services.web_scraper_service - WARNING - scraper: simple failed after retry
+2025-04-09 21:46:27,746 - services.web_scraper_service - INFO - Using Selenium browser-based scraping
+2025-04-09 21:46:27,746 - services.web_scraper_service - WARNING - scraper: browser failed after retry
+2025-04-09 21:46:27,747 - services.web_scraper_service - INFO - Using requests-html scraping
+2025-04-09 21:46:27,747 - services.web_scraper_service - WARNING - scraper: requests_html failed after retry
+2025-04-09 21:46:27,747 - services.web_scraper_service - ERROR - scraping: All scrapers failed to extract content
+2025-04-09 21:46:27,747 - services.document_service - INFO - Creating HCL document for: Failed to Extract: https://en.wikipedia.org/wiki/ReMarkable
+2025-04-09 21:46:27,747 - services.document_service - INFO - Created HCL file: /home/ryan/pi_share_receiver/temp/doc_-9186062974132972169.hcl
+2025-04-09 21:46:27,747 - services.document_service - ERROR - conversion: Failed to convert document to Remarkable format
+2025-04-09 21:59:19,305 - root - INFO - Server started at http://0.0.0.0:9999
+2025-04-09 21:59:37,343 - root - INFO - Processing URL: https://en.wikipedia.org/wiki/ReMarkable
+2025-04-09 21:59:37,373 - root - INFO - Generated QR code: qr_2104952630371556668.png
+2025-04-09 21:59:37,532 - services.web_scraper_service - INFO - Scraping URL: https://en.wikipedia.org/wiki/ReMarkable
+2025-04-09 21:59:37,532 - services.web_scraper_service - WARNING - network: Failed to fetch page for title extraction
+2025-04-09 21:59:37,532 - services.web_scraper_service - INFO - Using Playwright for JavaScript-enabled scraping
+2025-04-09 21:59:37,532 - services.web_scraper_service - WARNING - scraper: playwright failed after retry
+2025-04-09 21:59:37,532 - services.web_scraper_service - INFO - Using simple requests + BeautifulSoup scraping
+2025-04-09 21:59:37,532 - services.web_scraper_service - WARNING - scraper: simple failed after retry
+2025-04-09 21:59:37,532 - services.web_scraper_service - INFO - Using Selenium browser-based scraping
+2025-04-09 21:59:37,533 - services.web_scraper_service - WARNING - scraper: browser failed after retry
+2025-04-09 21:59:37,533 - services.web_scraper_service - INFO - Using requests-html scraping
+2025-04-09 21:59:37,533 - services.web_scraper_service - WARNING - scraper: requests_html failed after retry
+2025-04-09 21:59:37,533 - services.web_scraper_service - ERROR - scraping: All scrapers failed to extract content
+2025-04-09 21:59:37,533 - services.document_service - INFO - Creating HCL document for: Failed to Extract: https://en.wikipedia.org/wiki/ReMarkable
+2025-04-09 21:59:37,533 - services.document_service - INFO - Created HCL file: /home/ryan/pi_share_receiver/temp/doc_2104952630371556668.hcl
+2025-04-09 21:59:37,533 - services.document_service - ERROR - conversion: Failed to convert document to Remarkable format
+2025-04-09 22:03:01,613 - root - INFO - Server started at http://0.0.0.0:9999
+2025-04-09 22:03:22,033 - root - INFO - Processing URL: https://en.wikipedia.org/wiki/ReMarkable
+2025-04-09 22:03:22,057 - root - INFO - Generated QR code: qr_-4477255662836879501.png
+2025-04-09 22:03:22,286 - services.web_scraper_service - INFO - Scraping URL: https://en.wikipedia.org/wiki/ReMarkable
+2025-04-09 22:03:22,286 - services.web_scraper_service - WARNING - network: Failed to fetch page for title extraction
+2025-04-09 22:03:22,286 - services.web_scraper_service - INFO - Using Playwright for JavaScript-enabled scraping
+2025-04-09 22:03:22,286 - services.web_scraper_service - WARNING - scraper: playwright failed after retry
+2025-04-09 22:03:22,286 - services.web_scraper_service - INFO - Using simple requests + BeautifulSoup scraping
+2025-04-09 22:03:22,286 - services.web_scraper_service - WARNING - scraper: simple failed after retry
+2025-04-09 22:03:22,286 - services.web_scraper_service - INFO - Using Selenium browser-based scraping
+2025-04-09 22:03:22,286 - services.web_scraper_service - WARNING - scraper: browser failed after retry
+2025-04-09 22:03:22,287 - services.web_scraper_service - INFO - Using requests-html scraping
+2025-04-09 22:03:22,287 - services.web_scraper_service - WARNING - scraper: requests_html failed after retry
+2025-04-09 22:03:22,287 - services.web_scraper_service - ERROR - scraping: All scrapers failed to extract content
+2025-04-09 22:03:22,287 - services.document_service - INFO - Creating HCL document for: Failed to Extract: https://en.wikipedia.org/wiki/ReMarkable
+2025-04-09 22:03:22,287 - services.document_service - INFO - Created HCL file: /home/ryan/pi_share_receiver/temp/doc_-4477255662836879501.hcl
+2025-04-09 22:03:22,287 - services.document_service - ERROR - conversion: Failed to convert document to Remarkable format
+2025-04-09 22:06:23,209 - root - INFO - Server started at http://0.0.0.0:9999
+2025-04-09 22:06:44,739 - root - INFO - Processing URL: https://en.wikipedia.org/wiki/ReMarkable
+2025-04-09 22:06:44,763 - root - INFO - Generated QR code: qr_4743145494527952559.png
+2025-04-09 22:06:44,973 - services.web_scraper_service - INFO - Scraping URL: https://en.wikipedia.org/wiki/ReMarkable
+2025-04-09 22:06:44,973 - services.web_scraper_service - WARNING - network: Failed to fetch page for title extraction
+2025-04-09 22:06:44,973 - services.web_scraper_service - INFO - Using Playwright for JavaScript-enabled scraping
+2025-04-09 22:06:44,973 - services.web_scraper_service - WARNING - scraper: playwright failed after retry
+2025-04-09 22:06:44,973 - services.web_scraper_service - INFO - Using simple requests + BeautifulSoup scraping
+2025-04-09 22:06:44,973 - services.web_scraper_service - WARNING - scraper: simple failed after retry
+2025-04-09 22:06:44,974 - services.web_scraper_service - INFO - Using Selenium browser-based scraping
+2025-04-09 22:06:44,974 - services.web_scraper_service - WARNING - scraper: browser failed after retry
+2025-04-09 22:06:44,974 - services.web_scraper_service - INFO - Using requests-html scraping
+2025-04-09 22:06:44,974 - services.web_scraper_service - WARNING - scraper: requests_html failed after retry
+2025-04-09 22:06:44,974 - services.web_scraper_service - ERROR - scraping: All scrapers failed to extract content
+2025-04-09 22:06:44,974 - services.document_service - INFO - Creating HCL document for: Failed to Extract: https://en.wikipedia.org/wiki/ReMarkable
+2025-04-09 22:06:44,974 - services.document_service - INFO - Created HCL file: /home/ryan/pi_share_receiver/temp/doc_4743145494527952559.hcl
+2025-04-09 22:06:44,974 - services.document_service - ERROR - conversion: Failed to convert document to Remarkable format
+2025-04-09 22:10:37,687 - root - INFO - Server started at http://0.0.0.0:9999
+2025-04-09 22:10:54,715 - root - INFO - Processing URL: https://en.wikipedia.org/wiki/ReMarkable
+2025-04-09 22:10:54,738 - root - INFO - Generated QR code: qr_-3277182276022759171.png
+2025-04-09 22:10:54,872 - services.web_scraper_service - INFO - Scraping URL: https://en.wikipedia.org/wiki/ReMarkable
+2025-04-09 22:10:54,872 - services.web_scraper_service - WARNING - network: Failed to fetch page for title extraction
+2025-04-09 22:10:54,872 - services.web_scraper_service - INFO - Using Playwright for JavaScript-enabled scraping
+2025-04-09 22:10:54,873 - services.web_scraper_service - WARNING - scraper: playwright failed after retry
+2025-04-09 22:10:54,873 - services.web_scraper_service - INFO - Using simple requests + BeautifulSoup scraping
+2025-04-09 22:10:54,873 - services.web_scraper_service - WARNING - scraper: simple failed after retry
+2025-04-09 22:10:54,873 - services.web_scraper_service - INFO - Using Selenium browser-based scraping
+2025-04-09 22:10:54,873 - services.web_scraper_service - WARNING - scraper: browser failed after retry
+2025-04-09 22:10:54,873 - services.web_scraper_service - INFO - Using requests-html scraping
+2025-04-09 22:10:54,873 - services.web_scraper_service - WARNING - scraper: requests_html failed after retry
+2025-04-09 22:10:54,873 - services.web_scraper_service - ERROR - scraping: All scrapers failed to extract content
+2025-04-09 22:10:54,873 - services.document_service - INFO - Creating HCL document for: Failed to Extract: https://en.wikipedia.org/wiki/ReMarkable
+2025-04-09 22:10:54,873 - services.document_service - INFO - Created HCL file: /home/ryan/pi_share_receiver/temp/doc_-3277182276022759171.hcl
+2025-04-09 22:10:54,874 - services.document_service - ERROR - conversion: Failed to convert document to Remarkable format
+2025-04-14 14:34:39,218 - root - INFO - Server started at http://0.0.0.0:9999
+2025-04-14 14:39:08,655 - root - INFO - Server started at http://0.0.0.0:9999
+2025-04-14 14:39:08,814 - root - INFO - Processing URL: https://en.wikipedia.org/wiki/ReMarkable
+2025-04-14 14:39:08,853 - root - INFO - Generated QR code: qr_2342730550644405977.png
+2025-04-14 14:39:09,054 - services.web_scraper_service - INFO - Scraping URL: https://en.wikipedia.org/wiki/ReMarkable
+2025-04-14 14:39:09,054 - services.web_scraper_service - WARNING - network: Failed to fetch page for title extraction
+2025-04-14 14:39:09,055 - services.web_scraper_service - INFO - Using Playwright for JavaScript-enabled scraping
+2025-04-14 14:39:09,055 - services.web_scraper_service - WARNING - scraper: playwright failed after retry
+2025-04-14 14:39:09,055 - services.web_scraper_service - INFO - Using simple requests + BeautifulSoup scraping
+2025-04-14 14:39:09,055 - services.web_scraper_service - WARNING - scraper: simple failed after retry
+2025-04-14 14:39:09,055 - services.web_scraper_service - INFO - Using Selenium browser-based scraping
+2025-04-14 14:39:09,055 - services.web_scraper_service - WARNING - scraper: browser failed after retry
+2025-04-14 14:39:09,055 - services.web_scraper_service - INFO - Using requests-html scraping
+2025-04-14 14:39:09,055 - services.web_scraper_service - WARNING - scraper: requests_html failed after retry
+2025-04-14 14:39:09,055 - services.web_scraper_service - ERROR - scraping: All scrapers failed to extract content
+2025-04-14 14:39:09,055 - services.document_service - INFO - Creating HCL document for: Failed to Extract: https://en.wikipedia.org/wiki/ReMarkable
+2025-04-14 14:39:09,055 - services.document_service - INFO - Created HCL file: /home/ryan/pi_share_receiver/temp/doc_2342730550644405977.hcl
+2025-04-14 14:39:09,056 - services.document_service - ERROR - conversion: Failed to convert document to Remarkable format
+2025-04-14 15:41:21,753 - root - ERROR - Server error: [Errno 98] Address already in use
+2025-04-14 15:41:21,755 - root - ERROR - Traceback (most recent call last):
+  File "/home/ryan/pi_share_receiver/app/server.py", line 220, in main
+    server = HTTPServer((CONFIG['HOST'], CONFIG['PORT']), URLHandler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/usr/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/usr/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use
+
+2025-04-14 15:41:21,755 - root - INFO - Server stopped
+2025-04-14 15:55:58,870 - root - ERROR - Server error: [Errno 98] Address already in use
+2025-04-14 15:55:58,871 - root - ERROR - Traceback (most recent call last):
+  File "/home/ryan/pi_share_receiver/app/server.py", line 220, in main
+    server = HTTPServer((CONFIG['HOST'], CONFIG['PORT']), URLHandler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/usr/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/usr/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use
+
+2025-04-14 15:58:19,838 - root - ERROR - Server error: [Errno 98] Address already in use
+2025-04-14 15:58:19,839 - root - ERROR - Traceback (most recent call last):
+  File "/home/ryan/pi_share_receiver/app/server.py", line 220, in main
+    server = HTTPServer((CONFIG['HOST'], CONFIG['PORT']), URLHandler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/usr/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/usr/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use
+
+2025-04-14 15:59:42,713 - root - ERROR - Server error: [Errno 98] Address already in use
+2025-04-14 15:59:42,715 - root - ERROR - Traceback (most recent call last):
+  File "/home/ryan/pi_share_receiver/app/server.py", line 220, in main
+    server = HTTPServer((CONFIG['HOST'], CONFIG['PORT']), URLHandler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/usr/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/usr/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use
+
+2025-04-14 16:00:54,602 - root - ERROR - Server error: [Errno 98] Address already in use
+2025-04-14 16:00:54,603 - root - ERROR - Traceback (most recent call last):
+  File "/home/ryan/pi_share_receiver/app/server.py", line 220, in main
+    server = HTTPServer((CONFIG['HOST'], CONFIG['PORT']), URLHandler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/usr/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/usr/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use
+
+2025-04-14 16:01:53,243 - root - ERROR - Server error: [Errno 98] Address already in use
+2025-04-14 16:01:53,245 - root - ERROR - Traceback (most recent call last):
+  File "/home/ryan/pi_share_receiver/app/server.py", line 220, in main
+    server = HTTPServer((CONFIG['HOST'], CONFIG['PORT']), URLHandler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/usr/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/usr/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use
+
+2025-04-14 16:03:26,823 - root - ERROR - Server error: [Errno 98] Address already in use
+2025-04-14 16:03:26,824 - root - ERROR - Traceback (most recent call last):
+  File "/home/ryan/pi_share_receiver/app/server.py", line 220, in main
+    server = HTTPServer((CONFIG['HOST'], CONFIG['PORT']), URLHandler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/usr/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/usr/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use
+
+2025-04-14 16:04:32,886 - root - ERROR - Server error: [Errno 98] Address already in use
+2025-04-14 16:04:32,887 - root - ERROR - Traceback (most recent call last):
+  File "/home/ryan/pi_share_receiver/app/server.py", line 220, in main
+    server = HTTPServer((CONFIG['HOST'], CONFIG['PORT']), URLHandler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/usr/lib/python3.12/http/server.py", line 136
+    in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/usr/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use
+
+2025-04-14 16:07:51,284 - root - ERROR - Server error: [Errno 98] Address already in use
+2025-04-14 16:07:51,285 - root - ERROR - Traceback (most recent call last):
+  File "/home/ryan/pi_share_receiver/app/server.py", line 220, in main
+    server = HTTPServer((CONFIG['HOST'], CONFIG['PORT']), URLHandler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/usr/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/usr/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use
+
+2025-04-14 16:09:38,376 - root - ERROR - Server error: [Errno 98] Address already in use
+2025-04-14 16:09:38,378 - root - ERROR - Traceback (most recent call last):
+  File "/home/ryan/pi_share_receiver/app/server.py", line 220, in main
+    server = HTTPServer((CONFIG['HOST'], CONFIG['PORT']), URLHandler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/usr/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/usr/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use
+
+2025-04-14 16:11:39,125 - root - ERROR - Server error: [Errno 98] Address already in use
+2025-04-14 16:11:39,127 - root - ERROR - Traceback (most recent call last):
+  File "/home/ryan/pi_share_receiver/app/server.py", line 220, in main
+    server = HTTPServer((CONFIG['HOST'], CONFIG['PORT']), URLHandler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/usr/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/usr/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use
+2025-04-14 17:09:19,128 - root - INFO - Server started at http://0.0.0.0:9999
